@@ -18,11 +18,16 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping("/user")
 public class UserController {
-
     @Resource
     @Qualifier("UserServiceImpl")
     private UserService userService;
 
+    /**
+     * 登录
+     * @param user user
+     * @param session session
+     * @return index.jsp
+     */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(User user, HttpSession session){
         User loginUser = userService.login(user);
