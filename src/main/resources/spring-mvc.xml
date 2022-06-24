@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+       http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+       http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+
+
+    <!--注解驱动-->
+    <mvc:annotation-driven>
+        <mvc:message-converters register-defaults="false">
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>text/plain;charset=UTF-8</value>
+                        <value>text/html;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+            <!--SpringMVC  jakson反序列化的配置-->
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>application/json;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+    <!--静态资源过滤-->
+    <mvc:default-servlet-handler/>
+    <!--扫描包:controller-->
+    <context:component-scan base-package="com.imnu.controller"/>
+    <!--配置权限拦截器-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!--配置对那些资源执行拦截操作-->
+            <mvc:mapping path="/**/"/>
+            <!--配置那些资源排除拦截操作-->
+            <mvc:exclude-mapping path="/user/login"/>
+            <bean class="com.imnu.interceptor.PrivilegeInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+    <!--视图解析器-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+<!--        <property name="prefix" value="/pages/"/>-->
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+
+</beans>

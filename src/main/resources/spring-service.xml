@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+       http://www.springframework.org/schema/context
+       https://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/aop
+       https://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!--扫描service的包-->
+    <context:component-scan base-package="com.imnu.service.*"/>
+
+    <!--将所有业务类，注入到Spring，可以通过配置，或者注解实现-->
+    <bean id="UserServiceImpl" class="com.imnu.service.impl.UserServiceImpl">
+        <property name="userMapper" ref="userMapper"/>
+    </bean>
+    <bean id="StockServiceImpl" class="com.imnu.service.impl.StockServiceImpl">
+        <property name="stockMapper" ref="stockMapper"/>
+    </bean>
+    <bean id="ProductsServiceImpl" class="com.imnu.service.impl.ProductsServiceImpl">
+        <property name="productsMapper" ref="productsMapper"/>
+    </bean>
+    <bean id="OrdersServiceImpl" class="com.imnu.service.impl.OrdersServiceImpl">
+        <property name="ordersMapper" ref="ordersMapper"/>
+    </bean>
+    <bean id="CategoryServiceImpl" class="com.imnu.service.impl.CategoryServiceImpl">
+        <property name="categoryMapper" ref="categoryMapper"/>
+    </bean>
+
+    <!--声明事务配置-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <!--注入数据源-->
+        <property name="dataSource" ref="DataSource"/>
+    </bean>
+
+    <!--aop事务支持-->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="add" propagation="REQUIRED"/>
+            <tx:method name="delete" propagation="REQUIRED"/>
+            <tx:method name="update" propagation="REQUIRED"/>
+            <tx:method name="query" read-only="true"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <aop:config>
+        <aop:pointcut id="txPointCut" expression="execution(* com.imnu.mapper.*.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="txPointCut"/>
+    </aop:config>
+</beans>
