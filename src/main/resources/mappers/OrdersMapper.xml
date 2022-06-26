@@ -22,7 +22,7 @@
     </update>
 
     <delete id="delete">
-        delete from orders where id = #{orderId}
+        delete from orders where id = #{orderId} and state = 4
     </delete>
 
     <select id="get" resultType="com.imnu.bean.po.Orders">

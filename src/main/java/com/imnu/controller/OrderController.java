@@ -1,11 +1,9 @@
 package com.imnu.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.imnu.bean.po.Category;
 import com.imnu.bean.po.Orders;
 import com.imnu.bean.po.Products;
 import com.imnu.bean.vo.OrdersVo;
-import com.imnu.bean.vo.ProductsVo;
 import com.imnu.service.OrdersService;
 import com.imnu.service.ProductsService;
 import org.springframework.beans.BeanUtils;
@@ -48,9 +46,10 @@ public class OrderController {
     }
 
     @RequestMapping(value = "delete", method = RequestMethod.GET)
-    public String delete(Integer orderId){
-        ordersService.delete(orderId);
-        return "";
+    public String delete(Integer ordersId){
+        ordersService.delete(ordersId);
+        System.out.println(ordersId);
+        return "redirect:/orders/getPage";
     }
 
     @RequestMapping(value = "get", method = RequestMethod.GET)
@@ -71,7 +70,9 @@ public class OrderController {
 
     @RequestMapping(value = "getPage", method = RequestMethod.GET)
     public String getPage(@RequestParam(defaultValue = "1") int page,
-                          @RequestParam(defaultValue = "5")int size, Model model){
+                          @RequestParam(defaultValue = "5")int size,
+                          Model model){
+
         List<Orders> pageList = ordersService.getPage(page,size);
         List<OrdersVo> ordersVoList = pageList.stream().map((item) ->{
             OrdersVo ordersVo = new OrdersVo();
@@ -82,6 +83,6 @@ public class OrderController {
         }).collect(Collectors.toList());
         PageInfo<OrdersVo> pageInfo = new PageInfo<>(ordersVoList);
         model.addAttribute("pageInfo",pageInfo);
-        return "order";
+        return "index";
     }
 }

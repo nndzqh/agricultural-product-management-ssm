@@ -74,8 +74,8 @@
             <ul>
                 <li><a href="setting.html" target="main" >农产品管理</a></li>
                 <li><a href="user.html" target="main" class="active">农产品分类管理</a></li>
-                <li><a href="article.html" target="main">库存管理</a></li>
-                <li><a href="category.html" target="main">订单管理</a></li>
+                <li><a href="${pageContext.request.contextPath}/stock/getPage" target="main">库存管理</a></li>
+                <li><a href="${pageContext.request.contextPath}/orders/getPage.html" target="main">订单管理</a></li>
             </ul>
         </div>
     </div>
