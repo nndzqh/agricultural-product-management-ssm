@@ -32,18 +32,32 @@ public class StockServiceImpl implements StockService {
         return stockMapper.getPage();
     }
 
-    @Override
-    public List<StockVo> query(String sockName) {
-        return stockMapper.query(sockName);
-    }
 
-    @Override
-    public void updateById(int id) {
-         stockMapper.updateById(id);
-    }
 
     @Override
     public StockVo get(Integer id) {
         return stockMapper.get(id);
     }
+
+    @Override
+    public List<StockVo> getPageFind(int page, int size, String productsName) {
+        PageHelper.startPage(page, size);
+        return stockMapper.getPageFind(productsName);
+    }
+
+    @Override
+    public void update(StockVo stockVo) {
+        stockMapper.update(stockVo);
+    }
+
+    @Override
+    public List<StockVo> getAll() {
+        return stockMapper.getAll();
+    }
+
+    @Override
+    public void add(StockVo stockVo) {
+        stockMapper.add(stockVo);
+    }
+
 }

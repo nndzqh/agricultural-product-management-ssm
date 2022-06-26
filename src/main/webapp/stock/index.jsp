@@ -28,6 +28,7 @@
                 <input class="content_input" placeholder="请输入农产品名称" type="text" style="" name="productsName">
                 <button type="submit" class="content_button">查 询</button>
             </form>
+            <a href="${pageContext.request.contextPath}/stock/findStockName" class="add_button"/>添 加</a>
         </div>
         <div class="content_table">
             <table border="1">
@@ -42,7 +43,7 @@
                         <td>${stockVo.id}</td>
                         <td>${stockVo.name}</td>
                         <td>${stockVo.sum}</td>
-                            <a href="#" class="add_button"/>修 改</a>
+                        <td><a class="add_button" href="${pageContext.request.contextPath}/stock/get?stockId=${stockVo.id}" class="add_button"/>修 改</a></td>
                         </td>
                     </tr>
                 </c:forEach>
@@ -90,6 +91,31 @@
 
 </script>
 <style>
+    .content_header {
+        display: flex;
+        align-items: center;
+    }
+    .add_button {
+        line-height: 15px;
+        font-size: 14px;
+        background-color: rgb(65, 192, 244);
+        border: 1px solid rgb(65, 192, 244);
+        padding: 13px 20px;
+        border-radius: 15px;
+        height: 15px;
+        margin-bottom: 2px;
+        margin-left: 13px;
+        color: #ffffff;
+    }
+    .pagination {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .pagination li {
+        margin-left: 10px;
+    }
     * {
         margin: 0px;
         padding: 0px;
@@ -105,10 +131,7 @@
 
     a {
         color: #000;
-    }
-
-    a:hover {
-        color: brown;
+        text-decoration-line: none;
     }
 
     .header {

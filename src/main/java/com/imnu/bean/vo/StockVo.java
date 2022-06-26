@@ -17,14 +17,14 @@ public class StockVo implements Serializable {
     private Integer id;
 
     /**
-     * 库存名称
+     * 产品名称
      */
     private String name;
 
     /**
      * 产品id
      */
-    private Integer products;
+    private Integer productsId;
 
     /**
      * 数量

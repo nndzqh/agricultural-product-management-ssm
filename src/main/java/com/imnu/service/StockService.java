@@ -18,13 +18,13 @@ public interface StockService {
      */
     List<StockVo> getPage(int page, int size);
 
-    /**
-     * 模糊查询
-     * @return
-     */
-    List<StockVo> query(String stockName);
-
-    void updateById(int id);
-
     StockVo get(Integer id);
+
+    List<StockVo> getPageFind(int page, int size, String productsName);
+
+    void update(StockVo stockVo);
+
+    List<StockVo> getAll();
+
+    void add(StockVo stockVo);
 }

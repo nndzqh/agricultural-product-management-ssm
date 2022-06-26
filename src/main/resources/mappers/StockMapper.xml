@@ -3,8 +3,16 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.imnu.mapper.StockMapper">
-    <update id="updateById">
-        select stock set stock.sum where id = #{id}
+    <insert id="add" >
+        insert into stock(products_id,sum, create_time, update_time)
+        values (#{productsId}, #{sum},#{createTime}, #{createTime})
+    </insert>
+
+    <update id="update">
+        update stock
+        set stock.sum  = #{sum},
+            update_time=#{updateTime}
+        where stock.id = #{id}
     </update>
 
     <select id="getPage" resultType="com.imnu.bean.vo.StockVo">
@@ -30,16 +38,37 @@
         WHERE products.`name` LIKE #{sockName}
 
     </select>
+
     <select id="get" resultType="com.imnu.bean.vo.StockVo">
-        SELECT products.`name`,
-               stock.sum,
-               stock.id
-        FROM products
+        SELECT *
+        FROM stock
                  INNER JOIN
-             stock
+             products
              ON
-                 products.id = stock.products_id
-        WHERE products.`id` = #{id}
+                 stock.products_id = products.id
+        WHERE stock.id = #{id}
+    </select>
+
+    <select id="getPageFind" resultType="com.imnu.bean.vo.StockVo">
+        SELECT
+        *
+        FROM
+        products
+        INNER JOIN
+        stock
+        ON
+        products.id = stock.products_id
+        <where>
+            <if test="productsName != null and productsName != ''">
+                name like concat('%',#{productsName},'%')
+            </if>
+        </where>
+    </select>
+    <select id="getAll" resultType="com.imnu.bean.vo.StockVo">
+        SELECT *
+        FROM stock,
+             products
+        WHERE stock.products_id &lt;&gt; products.id;
     </select>
 
 </mapper>

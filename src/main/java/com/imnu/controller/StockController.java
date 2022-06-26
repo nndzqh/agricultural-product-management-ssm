@@ -3,6 +3,7 @@ package com.imnu.controller;
 import com.github.pagehelper.PageInfo;
 import com.imnu.bean.vo.StockVo;
 import com.imnu.service.StockService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -39,16 +40,6 @@ public class StockController {
                           @RequestParam(defaultValue = "5") int size,
                           Model model) {
         List<StockVo> pageList = stockService.getPage(page, size);
-        /*List<StockVo> stockVoList = pageList.stream().map((item) -> {
-            StockVo stockVo = new StockVo();
-            BeanUtils.copyProperties(item, stockVo);
-            System.out.println(item.getId());
-            StockVo stockVo1 =stockService.get(item.getId());
-            stockVo.setName(stockVo1.getName());
-            return stockVo;
-        }).collect(Collectors.toList());
-        PageInfo pageInfo = new PageInfo(stockVoList);
-        System.out.println(pageInfo);*/
         PageInfo pageInfo = new PageInfo(pageList);
         model.addAttribute("pageInfo", pageInfo);
         return "index";
@@ -65,15 +56,44 @@ public class StockController {
                               @RequestParam(defaultValue = "5") int size,
                               String productsName, Model model) {
 
-//        List<StockVo> stocks = stockService.query(stockName);
-//        model.addAttribute("stocks", stocks);
-        return "";
+        List<StockVo> pageList = stockService.getPageFind(page, size, productsName);
+        PageInfo<StockVo> pageInfo = new PageInfo<>(pageList);
+        model.addAttribute("pageInfo", pageInfo);
+        return "index";
+    }
+
+    @RequestMapping(value = "get", method = RequestMethod.GET)
+    public String get(Integer stockId, Model model) {
+        StockVo stockVo1 = stockService.get(stockId);
+        StockVo stockVo2 = new StockVo();
+        BeanUtils.copyProperties(stockVo1, stockVo2);
+        StockVo stockVo = stockService.get(stockId);
+        stockVo2.setName(stockVo.getName());
+        model.addAttribute("stockVo", stockVo1);
+        return "update";
     }
 
     @RequestMapping(value = "update", method = RequestMethod.POST)
-    public String update(Model model, HttpServletRequest request) {
-        int id = Integer.valueOf(request.getParameter("id")).intValue();
-        stockService.updateById(id);
-        return "";
+    public String update(StockVo stockVo) {
+        stockVo.setUpdateTime(new Date());
+        stockService.update(stockVo);
+        return "redirect:/stock/getPage";
     }
+
+    @RequestMapping("findStockName")
+    public String findStockName(Model model) {
+        List<StockVo> stockList = stockService.getAll();
+        model.addAttribute("stockList", stockList);
+        System.out.println(stockList);
+        return "insert";
+    }
+
+    @RequestMapping(value = "insert", method = RequestMethod.POST)
+    public String insert(StockVo stockVo) {
+        System.out.println(stockVo);
+        stockVo.setCreateTime(new Date());
+        stockService.add(stockVo);
+        return "redirect:/stock/getPage";
+    }
+
 }
