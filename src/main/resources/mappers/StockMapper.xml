@@ -9,7 +9,8 @@
 
     <select id="getPage" resultType="com.imnu.bean.vo.StockVo">
         SELECT products.`name`,
-               stock.sum
+               stock.sum,
+               stock.id
         FROM stock
                  INNER JOIN
              products
@@ -19,7 +20,8 @@
 
     <select id="query" resultType="com.imnu.bean.vo.StockVo">
         SELECT products.`name`,
-               stock.sum
+               stock.sum,
+               stock.id
         FROM products
                  INNER JOIN
              stock
@@ -27,6 +29,17 @@
                  products.id = stock.products_id
         WHERE products.`name` LIKE #{sockName}
 
+    </select>
+    <select id="get" resultType="com.imnu.bean.vo.StockVo">
+        SELECT products.`name`,
+               stock.sum,
+               stock.id
+        FROM products
+                 INNER JOIN
+             stock
+             ON
+                 products.id = stock.products_id
+        WHERE products.`id` = #{id}
     </select>
 
 </mapper>

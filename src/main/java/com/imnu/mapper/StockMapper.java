@@ -1,6 +1,7 @@
 package com.imnu.mapper;
 
 import com.imnu.bean.vo.StockVo;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -17,4 +18,6 @@ public interface StockMapper {
     List<StockVo> query(String sockName);
 
     void updateById(int id);
+
+    StockVo get(@Param("categoryId") Integer id);
 }

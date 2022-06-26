@@ -25,4 +25,6 @@ public interface StockService {
     List<StockVo> query(String stockName);
 
     void updateById(int id);
+
+    StockVo get(Integer id);
 }

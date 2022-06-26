@@ -1,7 +1,6 @@
 package com.imnu.service.impl;
 
 import com.github.pagehelper.PageHelper;
-import com.imnu.bean.po.Stock;
 import com.imnu.bean.vo.StockVo;
 import com.imnu.mapper.StockMapper;
 import com.imnu.service.StockService;
@@ -41,5 +40,10 @@ public class StockServiceImpl implements StockService {
     @Override
     public void updateById(int id) {
          stockMapper.updateById(id);
+    }
+
+    @Override
+    public StockVo get(Integer id) {
+        return stockMapper.get(id);
     }
 }
