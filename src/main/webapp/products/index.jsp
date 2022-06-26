@@ -45,7 +45,7 @@
                     <tr>
                         <td>${s.count}</td>
                         <td>${product.name}</td>
-                        <td><img src="${product.img}"></td>
+                        <td><img style="height: 40px;width: 50px" src="http://localhost:8080${pageContext.request.contextPath}/${product.img}"></td>
                         <td>
                             <c:if test="${product.state == 0}">起售</c:if>
                             <c:if test="${product.state == 1}">停售</c:if>

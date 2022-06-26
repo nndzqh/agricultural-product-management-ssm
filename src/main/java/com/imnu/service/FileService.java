@@ -22,17 +22,15 @@ public class FileService {
      * @return string
      */
     public String fileUpdate(CommonsMultipartFile file, HttpServletRequest request) {
-        // 使用UUID给图片重命名，并去掉四个“-”
-        String name = UUID.randomUUID().toString().replaceAll("-", "");
+        String name = file.getOriginalFilename();
         // 获取文件的扩展名
         String ext = FilenameUtils.getExtension(file
                 .getOriginalFilename());
         //上传路径保存设置
-        String path = request.getSession().getServletContext()
-                //这个是项目out文件夹下的upload路径
-                .getRealPath("/upload");
-        System.out.println(path+"===============");
-        File realPath = new File(path);
+        File files = new File("");
+        String path = request.getSession().getServletContext().getRealPath("") + "\\img";
+        System.out.println(path);
+        File realPath = new File(path );
         if (!realPath.exists()){
             //如果改路径下没有/upload的文件夹，就创建一个
             realPath.mkdir();
@@ -44,7 +42,7 @@ public class FileService {
             throw new RuntimeException(e);
         }
         //下面是要保存在数据的库的路径==》upload/0d8a59b4ee3645b59461e34d2e176442.png
-        String imgAddress="upload/" + name + "." + ext;
+        String imgAddress="img\\" + name + "." + ext;
 
         return imgAddress;
     }
