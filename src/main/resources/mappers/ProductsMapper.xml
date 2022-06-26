@@ -4,4 +4,19 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.imnu.mapper.ProductsMapper">
 
+    <insert id="add">
+        insert into products(category_id, name, img, create_time, update_time) values (#{categoryId},#{name},#{img},#{createTime},#{updateTime})
+    </insert>
+
+    <delete id="delete">
+        delete from products where id = #{productId}
+    </delete>
+
+    <select id="get" resultType="com.imnu.bean.Products">
+        select * from products where id = #{productId}
+    </select>
+    <select id="getPage" resultType="com.imnu.bean.Products">
+        select * from products
+    </select>
+
 </mapper>
