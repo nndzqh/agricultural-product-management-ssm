@@ -1,7 +1,14 @@
 package com.imnu.controller;
 
+import com.github.pagehelper.PageInfo;
+import com.imnu.bean.po.Category;
 import com.imnu.bean.po.Orders;
+import com.imnu.bean.po.Products;
+import com.imnu.bean.vo.OrdersVo;
+import com.imnu.bean.vo.ProductsVo;
 import com.imnu.service.OrdersService;
+import com.imnu.service.ProductsService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,17 +20,24 @@ import javax.annotation.Resource;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 /**
  * @author WenWangXin
  * @create 2022-06-25-2:25
  */
+
 @Controller
+@RequestMapping("orders")
 public class OrderController {
 
     @Resource
     @Qualifier("OrdersServiceImpl")
     private OrdersService ordersService;
+
+    @Resource
+    @Qualifier("ProductsServiceImpl")
+    private ProductsService productsService;
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public String add(Orders orders){
@@ -59,7 +73,15 @@ public class OrderController {
     public String getPage(@RequestParam(defaultValue = "1") int page,
                           @RequestParam(defaultValue = "10")int size, Model model){
         List<Orders> ordersList = ordersService.getPage(page,size);
-        model.addAttribute("ordersList",ordersList);
-        return "";
+        List<OrdersVo> productsVoList = ordersList.stream().map((item) ->{
+            OrdersVo ordersVo = new OrdersVo();
+            BeanUtils.copyProperties(item, ordersVo);
+            Products products = productsService.get(item.getProductsId());
+            ordersVo.setProductName(products.getName());
+            return ordersVo;
+        }).collect(Collectors.toList());
+        PageInfo<Orders> pageInfo = new PageInfo<>(ordersList);
+        model.addAttribute("pageInfo",pageInfo);
+        return "order";
     }
 }

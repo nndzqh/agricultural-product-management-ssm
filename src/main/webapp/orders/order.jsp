@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Title</title>
@@ -38,7 +39,7 @@
                     <th>订单完成时间</th>
                     <th>操作</th>
                 </tr>
-                <c:forEach var="orders" items="${orders.list}" varStatus="s">
+                <c:forEach var="orders" items="${pageInfo.list}" varStatus="s">
 
                     <tr>
                         <td>s.count</td>
@@ -49,28 +50,25 @@
                         <td>orders.state</td>
                         <td>orders.createTime</td>
                         <td>orders.endTime</td>
-                        <td>
-                            <button class="content_button">删 除</button>
-                            <a href="" class="add_button">修 改</a>
+                        <td><a href="${pageContext.request.contextPath}/orders/delete?ordersId=${orders.id}" class="add_button"/>删 除</a>
+                            <a href="#" class="add_button"/>修 改</a>
                         </td>
                     </tr>
                 </c:forEach>
             </table>
         </div>
         <!-- 分页 -->
-        <form action="demoServlet">
-            <table>
-                <tr>
-                    <c:forEach items="${ordersList.pages}" var="pages" varStatus="s">
-                        <td>
-                            <button type="submit" name="currentPage" value="${pages}">
-                                    ${pages}
-                            </button>
-                        </td>
-                    </c:forEach>
-                </tr>
-            </table>
-        </form>
+        <div class="box-tools pull-right">
+            <ul class="pagination" style="">
+                <li><a href="${pageContext.request.contextPath}/orders/getPage?page=1&size=5" aria-label="Previous">首页</a></li>
+                <li><a href="${pageContext.request.contextPath}/orders/getPage?page=${pageInfo.pageNum-1}&size=5">上一页</a></li>
+                <c:forEach begin="1" end="${pageInfo.pages+1}" var="pageNum">
+                    <li><a href="${pageContext.request.contextPath}/orders/getPage?page=${pageNum}&size=5">${pageNum}</a></li>
+                </c:forEach>
+                <li><a href="${pageContext.request.contextPath}/orders/getPage?page=${pageInfo.pageNum+1}&size=5">下一页</a></li>
+                <li><a href="${pageContext.request.contextPath}/orders/getPage?page=${pageInfo.pages}&size=5" aria-label="Next">尾页</a></li>
+            </ul>
+        </div>
     </div>
     <!--左侧导航区-->
     <div class="aside">

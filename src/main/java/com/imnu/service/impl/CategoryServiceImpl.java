@@ -60,4 +60,9 @@ public class CategoryServiceImpl implements CategoryService {
     public Category get(Integer categoryId) {
         return categoryMapper.get(categoryId);
     }
+
+    @Override
+    public List<Category> getAll() {
+        return categoryMapper.getAll();
+    }
 }

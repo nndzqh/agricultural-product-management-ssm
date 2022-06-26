@@ -27,7 +27,7 @@
                 <input class="content_input" placeholder="请输入您要查询的产品名称" type="text" style="" name="productsName">
                 <button type="submit" class="content_button">查 询</button>
             </form>
-            <a href="#" class="add_button"/>添 加</a>
+            <a href="${pageContext.request.contextPath}/products/findCategoryName" class="add_button"/>添 加</a>
         </div>
         <div class="content_table">
             <table border="1">
@@ -49,7 +49,7 @@
                         <td>${product.categoryName}</td>
                         <td>${product.createTime}</td>
                         <td><a href="${pageContext.request.contextPath}/products/delete?productId=${product.id}" class="add_button"/>删 除</a>
-                            <a href="#" class="add_button"/>修 改</a>
+                            <a href="${pageContext.request.contextPath}/products/get?productId=${product.id}" class="add_button"/>修 改</a>
                         </td>
                     </tr>
                 </c:forEach>
@@ -72,10 +72,10 @@
     <div class="aside">
         <div class="nav">
             <ul>
-                <li><a href="./index.jsp" target="main" class="active">农产品管理</a></li>
+                <li><a href="${pageContext.request.contextPath}/products/getPage" target="main" class="active">农产品管理</a></li>
                 <li><a href="../category/category.jsp" target="main">农产品分类管理</a></li>
-                <li><a href="${pageContext.request.contextPath}/stock/getPage" target="main">库存管理</a></li>
-                <li><a href="category.html" target="main">订单管理</a></li>
+                <li><a href="article.html" target="main">库存管理</a></li>
+                <li><a href="${pageContext.request.contextPath}/orders/getPage" target="main">订单管理</a></li>
             </ul>
         </div>
     </div>
@@ -89,11 +89,20 @@
 </script>
 <style>
     .add_button{
-
+        line-height: 15px;
+        font-size: 14px;
+        background-color: rgb(65, 192, 244);
+        border: 1px solid rgb(65, 192, 244);
+        padding: 13px 20px;
+        border-radius: 15px;
+        height: 15px;
+        margin-bottom: 2px;
+        margin-left: 13px;
+        color: #ffffff;
     }
     .content_header{
         display: flex;
-
+        align-items: center;
     }
    .pagination{
         width: 100%;
@@ -118,6 +127,7 @@
 
     a {
         color: #000;
+        text-decoration: none;
     }
 
     a:hover {

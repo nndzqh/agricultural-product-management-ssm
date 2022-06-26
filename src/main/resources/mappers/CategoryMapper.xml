@@ -33,4 +33,8 @@
     <select id="get" resultType="com.imnu.bean.po.Category">
         select * from category where id = #{categoryId}
     </select>
+
+    <select id="getAll" resultType="com.imnu.bean.po.Category">
+        select * from category
+    </select>
 </mapper>

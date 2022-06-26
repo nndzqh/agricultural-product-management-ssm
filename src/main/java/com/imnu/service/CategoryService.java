@@ -22,5 +22,16 @@ public interface CategoryService {
 
     List<Category> find(String name);
 
+    /**
+     * 根据分类id获取分类信息
+     * @param categoryId 分类id
+     * @return category
+     */
     Category get(Integer categoryId);
+
+    /**
+     * 获取全部的分类信息
+     * @return list
+     */
+    List<Category> getAll();
 }
