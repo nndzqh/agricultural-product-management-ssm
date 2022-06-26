@@ -66,8 +66,8 @@ public class CategoryController {
                        @RequestParam(defaultValue = "5")int size, Model model){
         List<Category> list=categoryService.getPage(page,size);
         PageInfo pageInfo=new PageInfo(list);
-        model.addAttribute(pageInfo);
-        return "";
+        model.addAttribute("pageInfo",pageInfo);
+        return "category";
     }
     /**
      * 分页查询
@@ -76,8 +76,8 @@ public class CategoryController {
      */
     @RequestMapping("/find")
     public String find(String name,Model model){
-        Category category=categoryService.find(name);
-        model.addAttribute("category",category);
-        return "";
+        List<Category> categorylist =categoryService.find(name);
+        model.addAttribute("categorylist",categorylist);
+        return "category";
     }
 }

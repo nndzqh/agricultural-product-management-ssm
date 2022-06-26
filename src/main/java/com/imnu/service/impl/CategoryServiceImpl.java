@@ -51,8 +51,8 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Category find(String name) {
-        Category category=categoryMapper.find(name);
-        return category;
+    public List<Category> find(String name) {
+        List<Category> list=categoryMapper.find(name);
+        return list;
     }
 }

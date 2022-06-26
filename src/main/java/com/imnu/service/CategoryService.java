@@ -20,5 +20,5 @@ public interface CategoryService {
 
     List<Category> getPage(int page, int size);
 
-    Category find(String name);
+    List<Category> find(String name);
 }

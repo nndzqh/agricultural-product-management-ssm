@@ -18,6 +18,11 @@
         select * from category;
     </select>
     <select id="find" resultType="com.imnu.bean.Category">
-      SELECT * FROM category WHERE `name` LIKE #{name};
+         SELECT * FROM category
+          <where>
+              <if test="name !=null">
+                  like #{name}
+              </if>
+          </where>
     </select>
 </mapper>

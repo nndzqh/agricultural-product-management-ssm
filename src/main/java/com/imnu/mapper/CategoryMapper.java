@@ -21,5 +21,5 @@ public interface CategoryMapper {
 
     List<Category> getPage();
 
-    Category find(String name);
+    List<Category> find(String name);
 }
