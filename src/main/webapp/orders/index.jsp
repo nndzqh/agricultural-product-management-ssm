@@ -23,26 +23,23 @@
     <div class="content">
         <div class="content_header">
             <form action="${pageContext.request.contextPath}/orders/getPage" method="get">
-              <input class="content_input" placeholder="订单号" type="text" name="keyWord" style="">
+              <input class="content_input" placeholder="请输入订单编号" type="text" name="keyWord" style="">
               <button class="content_button">查 询</button>
             </form>
-            <input class="content_input" placeholder="请输入订单编号" type="text" style="">
-            <button class="content_button">查 询</button>
         </div>
         <div class="content_table">
             <table border="1">
                 <tr>
-                    <th>序号</th>
-                    <th>订单编号</th>
-                    <th>数量</th>
-                    <th>地址</th>
-                    <th>联系人</th>
-                    <th>联系人电话</th>
-                    <th>产品名称</th>
-                    <th>订单状态</th>
-                    <th>订单创建时间</th>
-                    <th>订单完成时间</th>
-                    <th style="width: 200px">操作</th>
+                    <th style="width:55px">序号</th>
+                    <th style="width:180px">订单编号</th>
+                    <th style="width:70px">数量</th>
+                    <th style="width:100px">地址</th>
+                    <th style="width:100px">联系人</th>
+                    <th style="width:100px">联系人电话</th>
+                    <th style="width:100px">产品名称</th>
+                    <th style="width:100px">订单状态</th>
+                    <th style="width:100px">订单创建时间</th>
+                    <th style="width: 250px">操作</th>
                 </tr>
                 <c:forEach var="orders" items="${pageInfo.list}" varStatus="s">
 
@@ -63,7 +60,6 @@
                             <c:if test="${orders.state == 5}">未签收</c:if>
                         </td>
                         <td>${orders.createTime}</td>
-                        <td>${orders.endTime}</td>
                         <td><a href="${pageContext.request.contextPath}/orders/delete?ordersId=${orders.id}" class="add_button"/>删 除</a>
                             <a href="${pageContext.request.contextPath}/orders/get?orderId=${orders.id}"
                                class="add_button"/>修 改</a>
