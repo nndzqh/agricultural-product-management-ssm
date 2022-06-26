@@ -99,6 +99,7 @@ public class ProductsController {
         }).collect(Collectors.toList());
         PageInfo<ProductsVo> pageInfo = new PageInfo<>(productsVoList);
         model.addAttribute("pageInfo",pageInfo);
+        System.out.println(pageList);
         return "index";
     }
 

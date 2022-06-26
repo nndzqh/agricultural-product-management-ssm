@@ -22,9 +22,9 @@
     <!--主体-->
     <div class="content">
         <div class="content_header">
-            <form action="${pageContext.request.contextPath}/stock/getPageFind" method="post">
-                <input class="content_input" placeholder="请输入农产品名称" type="text" style="">
-                <button class="content_button">查 询</button>
+            <form action="${pageContext.request.contextPath}/orders/getPage" method="get">
+              <input class="content_input" placeholder="订单号" type="text" name="keyWord" style="">
+              <button class="content_button">查 询</button>
             </form>
         </div>
         <div class="content_table">

@@ -28,8 +28,13 @@
     <select id="get" resultType="com.imnu.bean.po.Orders">
         select * from orders where id = #{orderId}
     </select>
-
     <select id="getPage" resultType="com.imnu.bean.po.Orders">
-        SELECT * FROM orders
+         SELECT * FROM orders
+         <where>
+             <if test="keyWord !=null and keyWord !=''">
+                 number like concat('%',#{keyWord},'%')
+             </if>
+         </where>
     </select>
+
 </mapper>

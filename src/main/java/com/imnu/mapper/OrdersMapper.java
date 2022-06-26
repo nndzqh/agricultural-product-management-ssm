@@ -2,6 +2,7 @@ package com.imnu.mapper;
 
 import com.imnu.bean.po.Orders;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -39,8 +40,9 @@ public interface OrdersMapper {
     void update(Orders orders);
 
     /**
-     * 获取订单所有数据
+     * 获取订单数据通过模糊查询
+     * @param keyWord
      * @return list
      */
-    List<Orders> getPage();
+    List<Orders> getPage(@RequestParam("keyWord") String keyWord);
 }
