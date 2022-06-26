@@ -41,8 +41,8 @@ public class OrdersServiceImpl implements OrdersService {
     }
 
     @Override
-    public List<Orders> getPage(int page, int size) {
+    public List<Orders> getPage(int page, int size,String keyWord) {
         PageHelper.startPage(page,size);
-        return ordersMapper.getPage();
+        return ordersMapper.getPage(keyWord);
     }
 }

@@ -22,6 +22,10 @@
     <!--主体-->
     <div class="content">
         <div class="content_header">
+            <form action="${pageContext.request.contextPath}/orders/getPage" method="get">
+              <input class="content_input" placeholder="订单号" type="text" name="keyWord" style="">
+              <button class="content_button">查 询</button>
+            </form>
             <input class="content_input" placeholder="请输入订单编号" type="text" style="">
             <button class="content_button">查 询</button>
         </div>
