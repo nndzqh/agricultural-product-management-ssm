@@ -3,6 +3,9 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.imnu.mapper.StockMapper">
+    <update id="updateById">
+        select stock set stock.sum where id = #{id}
+    </update>
 
     <select id="getPage" resultType="com.imnu.bean.vo.StockVo">
         SELECT products.`name`,

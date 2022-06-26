@@ -23,4 +23,6 @@ public interface StockService {
      * @return
      */
     List<StockVo> query(String stockName);
+
+    void updateById(int id);
 }

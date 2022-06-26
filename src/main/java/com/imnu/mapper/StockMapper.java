@@ -15,4 +15,6 @@ public interface StockMapper {
     List<StockVo> getPage();
 
     List<StockVo> query(String sockName);
+
+    void updateById(int id);
 }

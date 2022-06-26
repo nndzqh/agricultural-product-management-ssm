@@ -37,4 +37,9 @@ public class StockServiceImpl implements StockService {
     public List<StockVo> query(String sockName) {
         return stockMapper.query(sockName);
     }
+
+    @Override
+    public void updateById(int id) {
+         stockMapper.updateById(id);
+    }
 }

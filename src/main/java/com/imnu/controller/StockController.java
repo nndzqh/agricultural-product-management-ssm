@@ -56,8 +56,10 @@ public class StockController {
         return "";
     }
 
-/*    @RequestMapping(value = "update",method = RequestMethod.POST)
-    public String update(Model model){
-
-    }*/
+    @RequestMapping(value = "update",method = RequestMethod.POST)
+    public String update(Model model,HttpServletRequest request){
+        int id = Integer.valueOf(request.getParameter("id")).intValue();
+        stockService.updateById(id);
+        return "";
+    }
 }
