@@ -77,9 +77,9 @@
         <div class="nav">
             <ul>
                 <li><a href="${pageContext.request.contextPath}/products/getPage target="main">农产品管理</a></li>
-                <li><a href="user.html" target="main">农产品分类管理</a></li>
-                <li><a href="index.jsp" target="main" class="active">库存管理</a></li>
-                <li><a href="category.html" target="main">订单管理</a></li>
+                <li><a href="${pageContext.request.contextPath}/category/page</a></li>
+                <li><a href="${pageContext.request.contextPath}/stock/getPage " target="main" class="active">库存管理</a></li>
+                <li><a href="${pageContext.request.contextPath}/orders/getPage" target="main">订单管理</a></li>
             </ul>
         </div>
     </div>
