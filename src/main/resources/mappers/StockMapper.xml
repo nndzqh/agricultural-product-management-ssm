@@ -4,4 +4,26 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.imnu.mapper.StockMapper">
 
+    <select id="getPage" resultType="com.imnu.bean.VO.StockVO">
+        SELECT products.`name`,
+               stock.sum
+        FROM stock
+                 INNER JOIN
+             products
+             ON
+                 stock.products_id = products.id
+    </select>
+
+    <select id="query" resultType="com.imnu.bean.VO.StockVO">
+        SELECT products.`name`,
+               stock.sum
+        FROM products
+                 INNER JOIN
+             stock
+             ON
+                 products.id = stock.products_id
+        WHERE products.`name` LIKE #{sockName}
+
+    </select>
+
 </mapper>
