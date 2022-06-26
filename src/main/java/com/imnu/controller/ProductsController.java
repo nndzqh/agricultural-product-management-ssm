@@ -67,7 +67,6 @@ public class ProductsController {
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public String update(Products products){
         products.setUpdateTime(new Date());
-        products.setState(0);
         productsService.update(products);
         return "redirect:/products/getPage";
     }

@@ -45,7 +45,10 @@
                         <td>${s.count}</td>
                         <td>${product.name}</td>
                         <td>${product.img}</td>
-                        <td>${product.state}</td>
+                        <td>
+                            <c:if test="${product.state == 0}">起售</c:if>
+                            <c:if test="${product.state == 1}">停售</c:if>
+                        </td>
                         <td>${product.categoryName}</td>
                         <td>${product.createTime}</td>
                         <td><a href="${pageContext.request.contextPath}/products/delete?productId=${product.id}" class="add_button"/>删 除</a>

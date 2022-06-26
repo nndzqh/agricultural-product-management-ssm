@@ -37,8 +37,12 @@
       <span>请上传图片</span>
       <input type="file" name="myfile" />
     </div>
-    <!-- 分类下拉框 -->
-    <button id="btn" tyle="submit">修改</button>
+    <div class="check_container">
+      <div><input type="radio" name="state" value="0" <c:if test='${products.state == 0}'>checked</c:if>>起 售</div>
+      <div><input type="radio" name="state" value="1" <c:if test='${products.state == 1}'>checked</c:if>>停 售</div>
+    </div>
+
+    <button id="btn" type="submit">修改</button>
   </form>
 </div>
 </body>
@@ -52,6 +56,21 @@
 
 </script>
 <style>
+  .check_container{
+    width: 50%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .check_container div{
+    display: flex;
+    align-items: center;
+  }
+  .check_container input{
+    width: 20px;
+    height: 20px;
+  }
   select{
     width: 208px;
     height: 34px;
