@@ -20,11 +20,22 @@
     <select id="get" resultType="com.imnu.bean.po.Products">
         select * from products where id = #{productId}
     </select>
+
     <select id="getPage" resultType="com.imnu.bean.po.Products">
         select * from products
     </select>
+
     <select id="findbyCategory" resultType="java.lang.Integer">
         SELECT COUNT(*) FROM products WHERE category_id=#{id};
+    </select>
+
+    <select id="getPageFind" resultType="com.imnu.bean.po.Products">
+        select * from products
+        <where>
+            <if test="productsName != null and productsName != ''">
+                name like concat('%',#{productsName},'%')
+            </if>
+        </where>
     </select>
 
 </mapper>

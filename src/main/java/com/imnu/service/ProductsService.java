@@ -50,5 +50,12 @@ public interface ProductsService {
      */
     void update(Products products);
 
-
+    /**
+     * 根据条件查询产品信息并分页显示
+     * @param page 第几页
+     * @param size 显示条数
+     * @param productsName 查询条件
+     * @return list
+     */
+    List<Products> getPageFind(int page, int size, String productsName);
 }

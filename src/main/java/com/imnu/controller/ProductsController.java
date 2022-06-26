@@ -1,7 +1,7 @@
 package com.imnu.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.imnu.bean.dto.ProductsDto;
+import com.imnu.bean.vo.ProductsVo;
 import com.imnu.bean.po.Category;
 import com.imnu.bean.po.Products;
 import com.imnu.service.CategoryService;
@@ -44,7 +44,7 @@ public class ProductsController {
     @RequestMapping(value = "delete", method = RequestMethod.GET)
     public String delete(Integer productId){
         productsService.delete(productId);
-        return "redirect:";
+        return "redirect:/products/getPage";
     }
 
     @RequestMapping(value = "get", method = RequestMethod.GET)
@@ -66,19 +66,35 @@ public class ProductsController {
 
     @RequestMapping(value = "getPage", method = RequestMethod.GET)
     public String getPage(@RequestParam(defaultValue = "1") int page,
-                          @RequestParam(defaultValue = "10")int size, Model model){
+                          @RequestParam(defaultValue = "5")int size, Model model){
         List<Products> pageList = productsService.getPage(page,size);
-        List<ProductsDto> productsDtoList = pageList.stream().map((item) ->{
-            ProductsDto productsDto = new ProductsDto();
-            BeanUtils.copyProperties(item,productsDto);
+        List<ProductsVo> productsVoList = pageList.stream().map((item) ->{
+            ProductsVo productsVo = new ProductsVo();
+            BeanUtils.copyProperties(item, productsVo);
             Category category = categoryService.get(item.getCategoryId());
-            productsDto.setCategoryName(category.getName());
-            return productsDto;
+            productsVo.setCategoryName(category.getName());
+            return productsVo;
         }).collect(Collectors.toList());
-        PageInfo<ProductsDto> pageInfo = new PageInfo<>(productsDtoList);
+        PageInfo<ProductsVo> pageInfo = new PageInfo<>(productsVoList);
         model.addAttribute("pageInfo",pageInfo);
         return "index";
     }
 
+    @RequestMapping(value = "getPageFind", method = RequestMethod.POST)
+    public String getPageFind(@RequestParam(defaultValue = "1") int page,
+                              @RequestParam(defaultValue = "5")int size,
+                              String productsName, Model model){
+        List<Products> pageList = productsService.getPageFind(page,size,productsName);
+        List<ProductsVo> productsVoList = pageList.stream().map((item) -> {
+            ProductsVo productsVo = new ProductsVo();
+            BeanUtils.copyProperties(item, productsVo);
+            Category category = categoryService.get(item.getCategoryId());
+            productsVo.setCategoryName(category.getName());
+            return productsVo;
+        }).collect(Collectors.toList());
+        PageInfo<ProductsVo> pageInfo = new PageInfo<>(productsVoList);
+        model.addAttribute("pageInfo",pageInfo);
+        return "index";
+    }
 
 }
