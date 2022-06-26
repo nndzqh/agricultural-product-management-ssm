@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.imnu.mapper.StockMapper">
 
-    <select id="getPage" resultType="com.imnu.bean.VO.StockVO">
+    <select id="getPage" resultType="com.imnu.bean.vo.StockVo">
         SELECT products.`name`,
                stock.sum
         FROM stock
@@ -14,7 +14,7 @@
                  stock.products_id = products.id
     </select>
 
-    <select id="query" resultType="com.imnu.bean.VO.StockVO">
+    <select id="query" resultType="com.imnu.bean.vo.StockVo">
         SELECT products.`name`,
                stock.sum
         FROM products

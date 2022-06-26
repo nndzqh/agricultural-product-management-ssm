@@ -1,6 +1,6 @@
 package com.imnu.service;
 
-import com.imnu.bean.Orders;
+import com.imnu.bean.po.Orders;
 
 import java.util.List;
 

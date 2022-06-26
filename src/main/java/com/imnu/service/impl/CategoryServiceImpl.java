@@ -1,7 +1,7 @@
 package com.imnu.service.impl;
 
 import com.github.pagehelper.PageHelper;
-import com.imnu.bean.Category;
+import com.imnu.bean.po.Category;
 import com.imnu.mapper.CategoryMapper;
 import com.imnu.service.CategoryService;
 import com.imnu.service.ProductsService;
@@ -54,5 +54,10 @@ public class CategoryServiceImpl implements CategoryService {
     public List<Category> find(String name) {
         List<Category> list=categoryMapper.find(name);
         return list;
+    }
+
+    @Override
+    public Category get(Integer categoryId) {
+        return categoryMapper.get(categoryId);
     }
 }

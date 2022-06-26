@@ -1,6 +1,6 @@
 package com.imnu.service;
 
-import com.imnu.bean.Category;
+import com.imnu.bean.po.Category;
 
 import java.util.List;
 
@@ -21,4 +21,6 @@ public interface CategoryService {
     List<Category> getPage(int page, int size);
 
     List<Category> find(String name);
+
+    Category get(Integer categoryId);
 }

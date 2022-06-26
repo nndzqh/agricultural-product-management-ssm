@@ -25,11 +25,11 @@
         delete from orders where id = #{orderId}
     </delete>
 
-    <select id="get" resultType="com.imnu.bean.Orders">
+    <select id="get" resultType="com.imnu.bean.po.Orders">
         select * from orders where id = #{orderId}
     </select>
 
-    <select id="getPage" resultType="com.imnu.bean.Orders">
+    <select id="getPage" resultType="com.imnu.bean.po.Orders">
         select * from orders
     </select>
 </mapper>

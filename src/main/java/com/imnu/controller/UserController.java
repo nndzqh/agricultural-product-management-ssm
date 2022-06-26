@@ -1,6 +1,6 @@
 package com.imnu.controller;
 
-import com.imnu.bean.User;
+import com.imnu.bean.po.User;
 import com.imnu.service.UserService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -34,7 +34,7 @@ public class UserController {
         if (loginUser != null){
             // 登录成功
             session.setAttribute("user",loginUser);
-            return "/user/index";
+            return "redirect:/products/getPage";
         }
         return "login";
     }

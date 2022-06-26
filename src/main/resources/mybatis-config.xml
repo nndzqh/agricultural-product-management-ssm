@@ -12,7 +12,7 @@
 
 
     <typeAliases>
-        <package name="com.imnu.bean" />
+        <package name="com.imnu.bean.po" />
     </typeAliases>
 
     <!-- 配置分页插件 -->

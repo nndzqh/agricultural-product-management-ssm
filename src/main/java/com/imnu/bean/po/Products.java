@@ -1,39 +1,39 @@
-package com.imnu.bean;
+package com.imnu.bean.po;
 
 import java.io.Serializable;
 import java.util.Date;
 import lombok.Data;
 
 /**
- * 用户表
- * @TableName user
+ * 农产品表
+ * @TableName products
  */
 @Data
-public class User implements Serializable {
+public class Products implements Serializable {
     /**
-     * 用户id
+     * 农产品id
      */
     private Integer id;
 
     /**
-     * 用户名
+     * 分类id
      */
-    private String username;
+    private Integer categoryId;
 
     /**
-     * 密码
+     * 名称
      */
-    private String password;
+    private String name;
 
     /**
-     * 状态 0-正常，1-禁用
+     * 图片路径
+     */
+    private String img;
+
+    /**
+     * 状态 0-起售，1-停售
      */
     private Integer state;
-
-    /**
-     * 是否为管理员 0-非，1-管理员
-     */
-    private Integer isPower;
 
     /**
      * 创建时间

@@ -1,6 +1,6 @@
 package com.imnu.service.impl;
 
-import com.imnu.bean.User;
+import com.imnu.bean.po.User;
 import com.imnu.mapper.UserMapper;
 import com.imnu.service.UserService;
 

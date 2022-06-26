@@ -17,10 +17,10 @@
         delete from products where id = #{productId}
     </delete>
 
-    <select id="get" resultType="com.imnu.bean.Products">
+    <select id="get" resultType="com.imnu.bean.po.Products">
         select * from products where id = #{productId}
     </select>
-    <select id="getPage" resultType="com.imnu.bean.Products">
+    <select id="getPage" resultType="com.imnu.bean.po.Products">
         select * from products
     </select>
     <select id="findbyCategory" resultType="java.lang.Integer">

@@ -1,6 +1,6 @@
 package com.imnu.service;
 
-import com.imnu.bean.User;
+import com.imnu.bean.po.User;
 
 /**
  * @author WenWangXin

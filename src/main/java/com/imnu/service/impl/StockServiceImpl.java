@@ -1,8 +1,8 @@
 package com.imnu.service.impl;
 
 import com.github.pagehelper.PageHelper;
-import com.imnu.bean.Stock;
-import com.imnu.bean.VO.StockVO;
+import com.imnu.bean.po.Stock;
+import com.imnu.bean.vo.StockVo;
 import com.imnu.mapper.StockMapper;
 import com.imnu.service.StockService;
 
@@ -28,13 +28,13 @@ public class StockServiceImpl implements StockService {
      * @return
      */
     @Override
-    public List<StockVO> getPage(int page, int size) {
+    public List<StockVo> getPage(int page, int size) {
         PageHelper.startPage(page, size);
         return stockMapper.getPage();
     }
 
     @Override
-    public List<StockVO> query(String sockName) {
+    public List<StockVo> query(String sockName) {
         return stockMapper.query(sockName);
     }
 }

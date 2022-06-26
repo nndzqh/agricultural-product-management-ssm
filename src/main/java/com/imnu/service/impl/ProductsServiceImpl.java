@@ -1,7 +1,7 @@
 package com.imnu.service.impl;
 
 import com.github.pagehelper.PageHelper;
-import com.imnu.bean.Products;
+import com.imnu.bean.po.Products;
 import com.imnu.mapper.ProductsMapper;
 import com.imnu.service.ProductsService;
 

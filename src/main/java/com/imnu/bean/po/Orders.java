@@ -1,4 +1,4 @@
-package com.imnu.bean;
+package com.imnu.bean.po;
 
 import java.io.Serializable;
 import java.util.Date;

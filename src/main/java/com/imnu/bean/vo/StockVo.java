@@ -1,4 +1,4 @@
-package com.imnu.bean.VO;
+package com.imnu.bean.vo;
 
 import lombok.Data;
 
@@ -10,7 +10,7 @@ import java.util.Date;
  *
  */
 @Data
-public class StockVO implements Serializable {
+public class StockVo implements Serializable {
     /**
      * 库存id
      */

@@ -1,6 +1,6 @@
 package com.imnu.service;
 
-import com.imnu.bean.VO.StockVO;
+import com.imnu.bean.vo.StockVo;
 
 import java.util.List;
 
@@ -16,11 +16,11 @@ public interface StockService {
      * @param size
      * @return
      */
-    List<StockVO> getPage(int page, int size);
+    List<StockVo> getPage(int page, int size);
 
     /**
      * 模糊查询
      * @return
      */
-    List<StockVO> query(String stockName);
+    List<StockVo> query(String stockName);
 }

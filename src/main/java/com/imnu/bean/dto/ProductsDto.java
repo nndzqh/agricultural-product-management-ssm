@@ -1,15 +1,16 @@
-package com.imnu.bean;
+package com.imnu.bean.dto;
+
+import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
-import lombok.Data;
 
 /**
  * 农产品表
  * @TableName products
  */
 @Data
-public class Products implements Serializable {
+public class ProductsDto implements Serializable {
     /**
      * 农产品id
      */
@@ -41,9 +42,9 @@ public class Products implements Serializable {
     private Date createTime;
 
     /**
-     * 修改时间
+     * 产品分类名称
      */
-    private Date updateTime;
+    private String categoryName;
 
     private static final long serialVersionUID = 1L;
 }

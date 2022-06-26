@@ -8,21 +8,29 @@
     <insert id="add">
         INSERT INTO category(name,sort,create_time,update_time) VALUES(#{name},#{sort},NOW(),NOW());
     </insert>
+
     <update id="update">
         UPDATE category SET name=#{name},sort=#{sort} ,update_time=NOW() WHERE id=#{id};
     </update>
+
     <delete id="delecte">
         DELETE FROM category WHERE id=#{id};
     </delete>
-    <select id="getPage" resultType="com.imnu.bean.Category">
+
+    <select id="getPage" resultType="com.imnu.bean.po.Category">
         select * from category;
     </select>
-    <select id="find" resultType="com.imnu.bean.Category">
+
+    <select id="find" resultType="com.imnu.bean.po.Category">
          SELECT * FROM category
           <where>
               <if test="name !=null">
                   like #{name}
               </if>
           </where>
+    </select>
+
+    <select id="get" resultType="com.imnu.bean.po.Category">
+        select * from category where id = #{categoryId}
     </select>
 </mapper>

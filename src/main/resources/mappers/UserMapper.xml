@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.imnu.mapper.UserMapper">
 
-    <select id="login" resultType="com.imnu.bean.User">
+    <select id="login" resultType="com.imnu.bean.po.User">
         select * from user where username=#{username} and password=#{password}
     </select>
 </mapper>

@@ -1,6 +1,6 @@
 package com.imnu.service;
 
-import com.imnu.bean.Products;
+import com.imnu.bean.po.Products;
 
 import java.util.List;
 

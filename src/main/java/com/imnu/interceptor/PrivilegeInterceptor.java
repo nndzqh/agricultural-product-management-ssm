@@ -1,6 +1,6 @@
 package com.imnu.interceptor;
 
-import com.imnu.bean.User;
+import com.imnu.bean.po.User;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;

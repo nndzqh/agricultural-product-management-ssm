@@ -1,29 +1,29 @@
-package com.imnu.bean;
+package com.imnu.bean.po;
 
 import java.io.Serializable;
 import java.util.Date;
 import lombok.Data;
 
 /**
- * 库存表
- * @TableName stock
+ * 分类表
+ * @TableName category
  */
 @Data
-public class Stock implements Serializable {
+public class Category implements Serializable {
     /**
-     * 库存id
+     * 种类id
      */
     private Integer id;
 
     /**
-     * 产品id
+     * 名称
      */
-    private Integer products;
+    private String name;
 
     /**
-     * 数量
+     * 排序
      */
-    private Integer sum;
+    private Integer sort;
 
     /**
      * 创建时间
@@ -31,7 +31,7 @@ public class Stock implements Serializable {
     private Date createTime;
 
     /**
-     * 更新时间
+     * 修改时间
      */
     private Date updateTime;
 

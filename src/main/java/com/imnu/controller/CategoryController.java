@@ -1,7 +1,7 @@
 package com.imnu.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.imnu.bean.Category;
+import com.imnu.bean.po.Category;
 import com.imnu.service.CategoryService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.ui.Model;
@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

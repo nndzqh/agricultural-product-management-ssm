@@ -1,8 +1,7 @@
 package com.imnu.controller;
 
-import com.imnu.bean.Orders;
+import com.imnu.bean.po.Orders;
 import com.imnu.service.OrdersService;
-import com.mysql.cj.x.protobuf.MysqlxCrud;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

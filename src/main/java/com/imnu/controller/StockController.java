@@ -1,7 +1,7 @@
 package com.imnu.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.imnu.bean.VO.StockVO;
+import com.imnu.bean.vo.StockVo;
 import com.imnu.service.StockService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -37,7 +37,7 @@ public class StockController {
     public String getPage(@RequestParam(defaultValue = "1") int page,
                           @RequestParam(defaultValue = "5") int size,
                           Model model) {
-        List<StockVO> pageList = stockService.getPage(page, size);
+        List<StockVo> pageList = stockService.getPage(page, size);
         PageInfo pageInfo = new PageInfo(pageList);
         model.addAttribute("pageInfo", pageInfo);
         return "pageInfo";
@@ -51,7 +51,7 @@ public class StockController {
     @RequestMapping(value = "query", method = RequestMethod.GET)
     public String query(Model model, HttpServletRequest request) {
         String stockName=request.getParameter("stockName");
-        List<StockVO> stocks = stockService.query(stockName);
+        List<StockVo> stocks = stockService.query(stockName);
         model.addAttribute("stocks", stocks);
         return "";
     }

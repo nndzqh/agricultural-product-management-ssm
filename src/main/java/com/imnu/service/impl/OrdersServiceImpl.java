@@ -1,7 +1,7 @@
 package com.imnu.service.impl;
 
 import com.github.pagehelper.PageHelper;
-import com.imnu.bean.Orders;
+import com.imnu.bean.po.Orders;
 import com.imnu.mapper.OrdersMapper;
 import com.imnu.service.OrdersService;
 
