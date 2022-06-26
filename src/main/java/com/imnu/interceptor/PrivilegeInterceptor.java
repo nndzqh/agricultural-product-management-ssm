@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
  */
 public class PrivilegeInterceptor  implements HandlerInterceptor {
 
-    @Override
+    /*@Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         //逻辑；判断用户是否登录  本质；判断session中有没有admin
         HttpSession session = request.getSession();
@@ -26,5 +26,5 @@ public class PrivilegeInterceptor  implements HandlerInterceptor {
         }
         //放行 访问目标资源
         return true;
-    }
+    }*/
 }

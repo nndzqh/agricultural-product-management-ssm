@@ -30,6 +30,13 @@
     </select>
 
     <select id="getPage" resultType="com.imnu.bean.po.Orders">
-        select * from orders
+        SELECT
+            *
+        FROM
+            products
+                INNER JOIN
+            orders
+            ON
+                products.id = orders.products_id
     </select>
 </mapper>
