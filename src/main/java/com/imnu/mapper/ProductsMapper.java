@@ -37,4 +37,10 @@ public interface ProductsMapper {
      * @return list
      */
     List<Products> getPage();
+
+    /**
+     * 根据categoryid查询
+     * @return categoryid
+     */
+    int findbyCategory(int categoryid);
 }

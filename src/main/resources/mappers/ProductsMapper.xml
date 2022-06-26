@@ -18,5 +18,8 @@
     <select id="getPage" resultType="com.imnu.bean.Products">
         select * from products
     </select>
+    <select id="findbyCategory" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM products WHERE category_id=#{id};
+    </select>
 
 </mapper>

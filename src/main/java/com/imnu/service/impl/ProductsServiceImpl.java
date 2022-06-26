@@ -40,4 +40,11 @@ public class ProductsServiceImpl implements ProductsService {
         PageHelper.startPage(page,size);
         return productsMapper.getPage();
     }
+
+    @Override
+    public int deleteByCategroyId(int categoryid) {
+        int cont=productsMapper.findbyCategory(categoryid);
+        return cont;
+    }
+
 }

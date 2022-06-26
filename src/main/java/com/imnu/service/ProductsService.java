@@ -35,4 +35,12 @@ public interface ProductsService {
      * @return list
      */
     List<Products> getPage(int page, int size);
+
+
+
+    /**
+     * 删除
+     * @param categoryid 种类id
+     */
+    int deleteByCategroyId(int categoryid);
 }
