@@ -32,6 +32,7 @@
     <bean id="CategoryServiceImpl" class="com.imnu.service.impl.CategoryServiceImpl">
         <property name="categoryMapper" ref="categoryMapper"/>
     </bean>
+    <bean id="FileService" class="com.imnu.service.FileService"/>
 
     <!--声明事务配置-->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

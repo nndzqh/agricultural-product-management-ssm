@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,7 +45,7 @@
                     <tr>
                         <td>${s.count}</td>
                         <td>${product.name}</td>
-                        <td>${product.img}</td>
+                        <td><img src="${product.img}"></td>
                         <td>
                             <c:if test="${product.state == 0}">起售</c:if>
                             <c:if test="${product.state == 1}">停售</c:if>
@@ -85,11 +86,6 @@
     </main>
 </div>
 </body>
-
-<script src="http://code.jquery.com/jquery-1.4.1.js"></script>
-<script type="text/javascript">
-
-</script>
 <style>
     .add_button{
         line-height: 15px;
