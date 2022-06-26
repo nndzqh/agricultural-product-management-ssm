@@ -71,16 +71,16 @@ public class OrderController {
 
     @RequestMapping(value = "getPage", method = RequestMethod.GET)
     public String getPage(@RequestParam(defaultValue = "1") int page,
-                          @RequestParam(defaultValue = "10")int size, Model model){
-        List<Orders> ordersList = ordersService.getPage(page,size);
-        List<OrdersVo> productsVoList = ordersList.stream().map((item) ->{
+                          @RequestParam(defaultValue = "5")int size, Model model){
+        List<Orders> pageList = ordersService.getPage(page,size);
+        List<OrdersVo> ordersVoList = pageList.stream().map((item) ->{
             OrdersVo ordersVo = new OrdersVo();
             BeanUtils.copyProperties(item, ordersVo);
             Products products = productsService.get(item.getProductsId());
             ordersVo.setProductName(products.getName());
             return ordersVo;
         }).collect(Collectors.toList());
-        PageInfo<Orders> pageInfo = new PageInfo<>(ordersList);
+        PageInfo<OrdersVo> pageInfo = new PageInfo<>(ordersVoList);
         model.addAttribute("pageInfo",pageInfo);
         return "order";
     }
