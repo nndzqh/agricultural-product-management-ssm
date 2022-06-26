@@ -18,7 +18,7 @@ public interface CategoryService {
 
     void update(Category category);
 
-    List<Category> getPage(int page, int size);
+    List<Category> getPage(int page, int size,String name);
 
     List<Category> find(String name);
 

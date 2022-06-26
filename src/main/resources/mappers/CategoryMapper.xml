@@ -17,9 +17,6 @@
         DELETE FROM category WHERE id=#{id};
     </delete>
 
-    <select id="getPage" resultType="com.imnu.bean.po.Category">
-        select * from category;
-    </select>
 
     <select id="find" resultType="com.imnu.bean.po.Category">
          SELECT * FROM category
@@ -32,6 +29,14 @@
 
     <select id="get" resultType="com.imnu.bean.po.Category">
         select * from category where id = #{categoryId}
+    </select>
+    <select id="getPage" resultType="com.imnu.bean.po.Category">
+        select * FROM  category
+        <where>
+            <if test="name !=null and name!=''">
+               name like concat('%',#{name},'%')
+            </if>
+        </where>
     </select>
 
     <select id="getAll" resultType="com.imnu.bean.po.Category">

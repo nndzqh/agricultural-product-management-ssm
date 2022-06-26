@@ -20,7 +20,12 @@ public interface CategoryMapper {
 
     void update(Category category);
 
-    List<Category> getPage();
+    /**
+     *
+     * @param name
+     * @return
+     */
+    List<Category> getPage(@Param("name") String name);
 
     List<Category> find(@Param("name") String name);
 
