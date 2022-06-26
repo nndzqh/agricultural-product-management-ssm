@@ -37,4 +37,12 @@ public interface ProductsMapper {
      * @return list
      */
     List<Products> getPage();
+
+    /**
+     * 修改产品信息
+     * @param products 产品
+     */
+    void update(Products products);
+
+
 }

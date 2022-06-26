@@ -40,4 +40,10 @@ public class ProductsServiceImpl implements ProductsService {
         PageHelper.startPage(page,size);
         return productsMapper.getPage();
     }
+
+    @Override
+    public void update(Products products) {
+        productsMapper.update(products);
+    }
+
 }

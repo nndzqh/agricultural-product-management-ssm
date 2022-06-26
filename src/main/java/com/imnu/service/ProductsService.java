@@ -35,4 +35,12 @@ public interface ProductsService {
      * @return list
      */
     List<Products> getPage(int page, int size);
+
+    /**
+     * 修改产品信息
+     * @param products 产品
+     */
+    void update(Products products);
+
+
 }
