@@ -28,12 +28,12 @@
                 <input class="content_input" placeholder="请输入农产品名称" type="text" name="name" style="">
                 <button class="content_button">查 询</button>
             </form>
-            <a href="./addCategory.jsp" target="main"/>添加农产品分类
-            <button class="content_button">添加农产品分类</button>
+            <a class="add_button" href="./addCategory.jsp" target="main">添加农产品分类</a>
         </div>
         <div class="content_table">
             <table border="1">
                 <tr>
+                    <th>排序</th>
                     <th>分类名称</th>
                     <th>创建时间</th>
                     <th>修改时间</th>
@@ -43,28 +43,27 @@
                 <tr>
                     <td>${ca.count}</td>
                     <td>${c.name}</td>
-                    <td>${c.createTime}</td>
-                    <td>${c.updateTime}</td>
+                    <td> ${c.createTime}</td>
+                    <td> ${c.updateTime} </td>
                     <td>
-                       <%-- <button class="content_button">删 除</button>--%>
-                        <a href="${pageContext.request.contextPath}/category/getById?id=${c.id}" target="main"/>修 改
-<%--                        <button class="content_button">删除</button>--%>
-                        <a href="${pageContext.request.contextPath}/category/delete?id=${c.id}" target="main" onclick="detal()"/>删除
+                        <a class="add_button" href="${pageContext.request.contextPath}/category/getById?id=${c.id}" target="main"/>修 改
+                        <a class="add_button" href="" target="main" onclick="detal(${c.id})"/>删除
                     </td>
                 </tr>
                 </c:forEach>
             </table>
         </div>
+
         <!-- 分页 -->
         <div class="box-tools pull-right">
             <ul class="pagination" style="">
-                <li><a href="${pageContext.request.contextPath}/category/page?page=1&size=5" aria-label="Previous">首页</a></li>
-                <li><a href="${pageContext.request.contextPath}/category/page?page=${pageInfo.pageNum-1}&size=5">上一页</a></li>
+                <li><a  href="${pageContext.request.contextPath}/category/page?page=1&size=5" aria-label="Previous">首页</a></li>
+                <li><a  href="${pageContext.request.contextPath}/category/page?page=${pageInfo.pageNum-1}&size=5">上一页</a></li>
                 <c:forEach begin="1" end="${pageInfo.pages+1}" var="pageNum">
-                    <li><a href="${pageContext.request.contextPath}/category/page?page=${pageNum}&size=5">${pageNum}</a></li>
+                <li><a  href="${pageContext.request.contextPath}/category/page?page=${pageNum}&size=5">${pageNum}</a></li>
                 </c:forEach>
-                <li><a href="${pageContext.request.contextPath}/category/page?page=${pageInfo.pageNum+1}&size=5">下一页</a></li>
-                <li><a href="${pageContext.request.contextPath}/category/page?page=${pageInfo.pages}&size=5" aria-label="Next">尾页</a></li>
+                <li><a  href="${pageContext.request.contextPath}/category/page?page=${pageInfo.pageNum+1}&size=5">下一页</a></li>
+                <li><a  href="${pageContext.request.contextPath}/category/page?page=${pageInfo.pages}&size=5" aria-label="Next">尾页</a></li>
             </ul>
         </div>
     </div>
@@ -72,21 +71,55 @@
     <div class="aside">
         <div class="nav">
             <ul>
-                <li><a href="setting.html" target="main" >农产品管理</a></li>
-                <li><a href="user.html" target="main" class="active">农产品分类管理</a></li>
-                <li><a href="article.html" target="main">库存管理</a></li>
-                <li><a href="category.html" target="main">订单管理</a></li>
+                <li><a href="${pageContext.request.contextPath}/products/getPage" target="main" >农产品管理</a></li>
+                <li><a href="${pageContext.request.contextPath}/category/page" target="main" class="active">农产品分类管理</a></li>
+                <li><a href="${pageContext.request.contextPath}/stock/getPage" target="main">库存管理</a></li>
+                <li><a href="${pageContext.request.contextPath}/orders/getPage" target="main">订单管理</a></li>
             </ul>
         </div>
     </div>
 
 </div>
-</body>>
+</body>
 <script src="http://code.jquery.com/jquery-1.4.1.js"></script>
 <script type="text/javascript">
+    function detal(id){
+        $.ajax({
+            type:"get",
+            url:"${pageContext.request.contextPath}/category/delete",
+            data:{
+                id:id
+            },
+            success:function (res) {
+                console.log(res,'2131asdadadsadas');
+                if(res){
+                    alert("该种类下，存在农产品，不可删除");
+                }else{
+                    alert("删除成功！！！！");
+                    location.reload();
+                }
+            }
+        })
+    }
 
 </script>
 <style>
+    .add_button{
+        line-height: 15px;
+        font-size: 14px;
+        background-color: rgb(65, 192, 244);
+        border: 1px solid rgb(65, 192, 244);
+        padding: 13px 20px;
+        border-radius: 15px;
+        height: 15px;
+        margin-bottom: 2px;
+        margin-left: 13px;
+        color: #ffffff;
+    }
+    .content_header{
+        display: flex;
+        align-items: center;
+    }
     * {
         margin: 0px;
         padding: 0px;
@@ -102,12 +135,8 @@
 
     a {
         color: #000;
+        text-decoration-line: none;
     }
-
-    a:hover {
-        color: brown;
-    }
-
     .header {
         background:rgb(9, 159, 247);
         overflow: hidden;
@@ -246,6 +275,14 @@
         background-color: #999999;
         cursor: pointer;
         border: 1px solid #999999;
+    }
+    .pagination{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .pagination li{
+        margin-left: 10px;
     }
 </style>
 </html>

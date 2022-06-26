@@ -49,6 +49,7 @@
                         <td>${orders.address}</td>
                         <td>${orders.contact}</td>
                         <td>${orders.phone}</td>
+                        <td>${orders.productName}</td>
                         <td>${orders.state}</td>
                         <td>${orders.createTime}</td>
                         <td>${orders.endTime}</td>
@@ -76,10 +77,10 @@
     <div class="aside">
         <div class="nav">
             <ul>
-                <li><a href="setting.html" target="main" >农产品管理</a></li>
-                <li><a href="user.html" target="main" >农产品分类管理</a></li>
-                <li><a href="article.html" target="main" >库存管理</a></li>
-                <li><a href="category.html" target="main" class="active">订单管理</a></li>
+                <li><a href="${pageContext.request.contextPath}/products/getPage" target="main" >农产品管理</a></li>
+                <li><a href="${pageContext.request.contextPath}/category/page" >农产品分类管理</a></li>
+                <li><a href="${pageContext.request.contextPath}/stock/getPage" >库存管理</a></li>
+                <li><a href="${pageContext.request.contextPath}/orders/getPage">订单管理</a></li>
             </ul>
         </div>
     </div>

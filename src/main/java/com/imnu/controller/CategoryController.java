@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
@@ -45,11 +46,19 @@ public class CategoryController {
      * @param id
      * @return
      */
-    @RequestMapping(value = "/delete",method = RequestMethod.DELETE)
-    public Map<String,Boolean> delete(@RequestParam("id") int id){
-        Map<String, Boolean> map=new HashMap<String, Boolean>();
+    @RequestMapping(value = "/delete",method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String,Boolean> delete(@RequestParam("id") Integer id){
+        System.out.println("FFFFFFFFFFFFFF"+id);
         Boolean flag=categoryService.delete(id);
-        map.put("Boolean",flag);
+        Map<String,Boolean> map=new HashMap<String, Boolean>();
+        //model.addAttribute("flag",flag);
+        if(flag){
+            map.put("flag",true);
+        }else {
+            map.put("flag",false);
+        }
+        System.out.println(map);
        return map;
     }
     /**
