@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%--
   Created by IntelliJ IDEA.
   User: 63547
@@ -16,7 +16,7 @@
 </head>
 <body>
 <div class="content">
-  <form action="${pageContext.request.contextPath}/products/add" method="post" style="display: flex;flex-direction: column;">
+  <form action="${pageContext.request.contextPath}/products/add" method="post" enctype="multipart/form-data" style="display: flex;flex-direction: column;">
     <div class="si">
       <span>请输入产品名称</span>
       <input type="text" name="name">
@@ -30,8 +30,7 @@
       </select>
     </div>
     <div class="si">
-      <span>请上传图片</span>
-      <input type="file" name="myfile" />
+        <input class="" accept="image/*;" type="file" attachtype="1" name="farm"/>
     </div>
     <!-- 分类下拉框 -->
     <button id="btn" tyle="submit">添加</button>
@@ -39,12 +38,25 @@
 </div>
 </body>
 <script src="http://code.jquery.com/jquery-1.4.1.js"></script>
-<script type="text/javascript">
-  $(document).ready(function() {
-    $(".click").click(function() {
-      $(".down").slideToggle("slow");
+<script>
+    // 上传方法的监听
+    $(".ticketUploader").on("change", function (e) {
+        var files = e.target.files;
+        for (var i = 0; i < files.length; i++) {
+            var file = files[i];
+            Utils.ImgToBase64(file,1980,function(resizeImgBase64) {
+                $("#a").remove();
+                $('#ticketImages' ).append('<li id="a" img="' + resizeImgBase64 + '" class="weui-uploader__file" style="background-image:url(' + resizeImgBase64 + ')" bUploaded="0"><close οnclick="closePic(this)" class="el-icon-error"></close></li>');
+            });
+        }
     });
-  });
+    function closePic(obj){
+        console.log(obj)
+        //此时的obj就是close标签，下面是获得这个标签的父标签，这里的父标签是li
+        let pic = obj.parentNode
+        pic.remove()//li标签remove了就删除了
+        $(".ticketUploader").val('');
+    }
 
 </script>
 <style>
