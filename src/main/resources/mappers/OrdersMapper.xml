@@ -30,6 +30,6 @@
     </select>
 
     <select id="getPage" resultType="com.imnu.bean.po.Orders">
-        select * from orders
+        SELECT * FROM orders
     </select>
 </mapper>

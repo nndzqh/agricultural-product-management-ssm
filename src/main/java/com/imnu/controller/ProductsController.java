@@ -39,6 +39,7 @@ public class ProductsController {
     @RequestMapping(value = "add",method = RequestMethod.POST)
     public String add(Products products){
         products.setCreateTime(new Date());
+        products.setState(0);
         productsService.add(products);
         return "redirect:/products/getPage";
     }
@@ -56,14 +57,18 @@ public class ProductsController {
         BeanUtils.copyProperties(products,productsVo);
         Category category = categoryService.get(productId);
         productsVo.setCategoryName(category.getName());
+        List<Category> categoryList = categoryService.getAll();
+        model.addAttribute("categoryList",categoryList);
         model.addAttribute("products",productsVo);
+        System.out.println(productsVo);
         return "update";
     }
 
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public String update(Products products){
+        products.setUpdateTime(new Date());
         productsService.update(products);
-        return "";
+        return "redirect:/products/getPage";
     }
 
     @RequestMapping(value = "getPage", method = RequestMethod.GET)

@@ -45,7 +45,10 @@
                         <td>${s.count}</td>
                         <td>${product.name}</td>
                         <td>${product.img}</td>
-                        <td>${product.state}</td>
+                        <td>
+                            <c:if test="${product.state == 0}">起售</c:if>
+                            <c:if test="${product.state == 1}">停售</c:if>
+                        </td>
                         <td>${product.categoryName}</td>
                         <td>${product.createTime}</td>
                         <td><a href="${pageContext.request.contextPath}/products/delete?productId=${product.id}" class="add_button"/>删 除</a>
@@ -75,7 +78,7 @@
                 <li><a href="${pageContext.request.contextPath}/products/getPage" target="main" class="active">农产品管理</a></li>
                 <li><a href="${pageContext.request.contextPath}/category/page" target="main">农产品分类管理</a></li>
                 <li><a href="article.html" target="main">库存管理</a></li>
-                <li><a href="category.html" target="main">订单管理</a></li>
+                <li><a href="${pageContext.request.contextPath}/orders/getPage" target="main">订单管理</a></li>
             </ul>
         </div>
     </div>

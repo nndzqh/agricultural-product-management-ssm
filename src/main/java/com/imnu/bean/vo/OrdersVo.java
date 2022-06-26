@@ -1,8 +1,14 @@
 package com.imnu.bean.vo;
 
-import java.util.Date;
+import lombok.Data;
 
+import java.util.Date;
+@Data
 public class OrdersVo {
+    /**
+     * 订单id
+     */
+    private Integer id;
     /**
      * 订单号
      */
@@ -12,6 +18,11 @@ public class OrdersVo {
      * 产品id
      */
     private Integer productsId;
+
+    /**
+     * 产品名称
+     */
+    private String productName;
 
     /**
      * 数量
