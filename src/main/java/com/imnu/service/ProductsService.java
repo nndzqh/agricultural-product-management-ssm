@@ -43,4 +43,12 @@ public interface ProductsService {
      * @param categoryid 种类id
      */
     int deleteByCategroyId(int categoryid);
+
+    /**
+     * 修改产品信息
+     * @param products 产品
+     */
+    void update(Products products);
+
+
 }

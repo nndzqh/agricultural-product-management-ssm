@@ -49,13 +49,20 @@ public class ProductsController {
         }
     }
 
+    @RequestMapping(value = "update", method = RequestMethod.POST)
+    public String update(Products products){
+        productsService.update(products);
+        return "";
+    }
+
     @RequestMapping(value = "getPage", method = RequestMethod.GET)
     public String getPage(@RequestParam(defaultValue = "1") int page,
-                          @RequestParam(defaultValue = "5")int size, Model model){
+                          @RequestParam(defaultValue = "10")int size, Model model){
         List<Products> pageList = productsService.getPage(page,size);
         PageInfo pageInfo = new PageInfo(pageList);
         model.addAttribute("pageInfo",pageInfo);
         return "";
     }
+
 
 }

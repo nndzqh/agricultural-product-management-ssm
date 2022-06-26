@@ -39,6 +39,14 @@ public interface ProductsMapper {
     List<Products> getPage();
 
     /**
+     * 修改产品信息
+     * @param products 产品
+     */
+    void update(Products products);
+
+
+
+    /**
      * 根据categoryid查询
      * @return categoryid
      */

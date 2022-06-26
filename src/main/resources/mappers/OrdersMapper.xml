@@ -4,4 +4,32 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.imnu.mapper.OrdersMapper">
 
+    <insert id="add">
+        insert into orders(number, products_id, num, address, contact, phone, state, create_time, update_time, end_time) VALUES(#{number},#{productsId},#{num},#{address},#{contact},#{phone},#{state},#{createTime},#{updateTime},#{endTime})
+    </insert>
+
+    <update id="update">
+        update orders
+        set products_id = #{productsId},
+            num = #{num},
+            address = #{address},
+            contact = #{contact},
+            phone = #{phone},
+            state = #{state},
+            update_time = #{updateTime}
+        where
+            id = #{id}
+    </update>
+
+    <delete id="delete">
+        delete from orders where id = #{orderId}
+    </delete>
+
+    <select id="get" resultType="com.imnu.bean.Orders">
+        select * from orders where id = #{orderId}
+    </select>
+
+    <select id="getPage" resultType="com.imnu.bean.Orders">
+        select * from orders
+    </select>
 </mapper>

@@ -47,4 +47,10 @@ public class ProductsServiceImpl implements ProductsService {
         return cont;
     }
 
+
+    @Override
+    public void update(Products products) {
+        productsMapper.update(products);
+    }
+
 }
