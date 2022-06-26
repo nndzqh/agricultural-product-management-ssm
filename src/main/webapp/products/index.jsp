@@ -23,8 +23,10 @@
     <!--主体-->
     <div class="content">
         <div class="content_header">
-            <input class="content_input" placeholder="请输入您要查询的产品名称" type="text" style="">
-            <button class="content_button">查 询</button>
+            <form action="${pageContext.request.contextPath}/products/getPageFind" method="post">
+                <input class="content_input" placeholder="请输入您要查询的产品名称" type="text" style="" name="productsName">
+                <button type="submit" class="content_button">查 询</button>
+            </form>
             <a href="#" class="add_button"/>添 加</a>
         </div>
         <div class="content_table">
@@ -46,7 +48,7 @@
                         <td>${product.state}</td>
                         <td>${product.categoryName}</td>
                         <td>${product.createTime}</td>
-                        <td><a href="#" class="add_button"/>删 除</a>
+                        <td><a href="${pageContext.request.contextPath}/products/delete?productId=${product.id}" class="add_button"/>删 除</a>
                             <a href="#" class="add_button"/>修 改</a>
                         </td>
                     </tr>
@@ -56,9 +58,9 @@
         <!-- 分页 -->
         <div class="box-tools pull-right">
             <ul class="pagination" style="">
-                <li><a href="${pageContext.request.contextPath}/products/getPage?page=1&size=10" aria-label="Previous">首页</a></li>
+                <li><a href="${pageContext.request.contextPath}/products/getPage?page=1&size=5" aria-label="Previous">首页</a></li>
                 <li><a href="${pageContext.request.contextPath}/products/getPage?page=${pageInfo.pageNum-1}&size=5">上一页</a></li>
-                <c:forEach begin="1" end="${pageInfo.pages}" var="pageNum">
+                <c:forEach begin="1" end="${pageInfo.pages+1}" var="pageNum">
                     <li><a href="${pageContext.request.contextPath}/products/getPage?page=${pageNum}&size=5">${pageNum}</a></li>
                 </c:forEach>
                 <li><a href="${pageContext.request.contextPath}/products/getPage?page=${pageInfo.pageNum+1}&size=5">下一页</a></li>
@@ -70,8 +72,8 @@
     <div class="aside">
         <div class="nav">
             <ul>
-                <li><a href="setting.html" target="main" class="active">农产品管理</a></li>
-                <li><a href="user.html" target="main">农产品分类管理</a></li>
+                <li><a href="./index.jsp" target="main" class="active">农产品管理</a></li>
+                <li><a href="../category/category.jsp" target="main">农产品分类管理</a></li>
                 <li><a href="article.html" target="main">库存管理</a></li>
                 <li><a href="category.html" target="main">订单管理</a></li>
             </ul>
@@ -86,6 +88,13 @@
 
 </script>
 <style>
+    .add_button{
+
+    }
+    .content_header{
+        display: flex;
+
+    }
    .pagination{
         width: 100%;
         display: flex;

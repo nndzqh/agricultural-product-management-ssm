@@ -51,4 +51,11 @@ public interface ProductsMapper {
      * @return categoryid
      */
     int findbyCategory(int categoryid);
+
+    /**
+     * 根据条件查询产品信息
+     * @param productsName
+     * @return
+     */
+    List<Products> getPageFind(String productsName);
 }

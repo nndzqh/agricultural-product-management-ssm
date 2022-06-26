@@ -1,4 +1,4 @@
-package com.imnu.bean.dto;
+package com.imnu.bean.vo;
 
 import lombok.Data;
 
@@ -10,7 +10,7 @@ import java.util.Date;
  * @TableName products
  */
 @Data
-public class ProductsDto implements Serializable {
+public class ProductsVo implements Serializable {
     /**
      * 农产品id
      */

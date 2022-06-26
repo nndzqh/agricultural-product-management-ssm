@@ -53,4 +53,10 @@ public class ProductsServiceImpl implements ProductsService {
         productsMapper.update(products);
     }
 
+    @Override
+    public List<Products> getPageFind(int page, int size, String productsName) {
+        PageHelper.startPage(page,size);
+        return productsMapper.getPageFind(productsName);
+    }
+
 }
