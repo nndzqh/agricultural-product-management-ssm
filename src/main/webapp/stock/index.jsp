@@ -24,9 +24,9 @@
     <!--主体-->
     <div class="content">
         <div class="content_header">
-            <form action="${pageContext.request.contextPath}/stock/getPage" method="post">
-                <input class="content_input" placeholder="请输入农产品名称" type="text" style="">
-                <button class="content_button">查 询</button>
+            <form action="${pageContext.request.contextPath}/stock/getPageFind" method="post">
+                <input class="content_input" placeholder="请输入农产品名称" type="text" style="" name="productsName">
+                <button type="submit" class="content_button">查 询</button>
             </form>
         </div>
         <div class="content_table">
@@ -39,7 +39,7 @@
                 </tr>
                 <c:forEach var="stockVo" items="${pageInfo.list}" varStatus="s">
                     <tr>
-                        <td>${s.id}</td>
+                        <td>${stockVo.id}</td>
                         <td>${stockVo.name}</td>
                         <td>${stockVo.sum}</td>
                             <a href="#" class="add_button"/>修 改</a>
@@ -48,28 +48,36 @@
                 </c:forEach>
             </table>
         </div>
+
         <!-- 分页 -->
-        <form action="demoServlet">
-            <table>
-                <tr>
-                    <c:forEach items="${requestScope.pages}" var="pages" varStatus="s">
-                        <td>
-                            <button type="submit" name="currentPage" value="${pages}">
-                                    ${pages}
-                            </button>
-                        </td>
-                    </c:forEach>
-                </tr>
-            </table>
-        </form>
+        <div class="box-tools pull-right">
+            <ul class="pagination" style="">
+                <li><a href="${pageContext.request.contextPath}/stock/getPage?page=1&size=5"
+                       aria-label="Previous">首页</a></li>
+                <li>
+                    <a href="${pageContext.request.contextPath}/stock/getPage?page=${pageInfo.pageNum-1}&size=5">上一页</a>
+                </li>
+                <c:forEach begin="1" end="${pageInfo.pages+1}" var="pageNum">
+                    <li>
+                        <a href="${pageContext.request.contextPath}/stock/getPage?page=${pageNum}&size=5">${pageNum}</a>
+                    </li>
+                </c:forEach>
+                <li>
+                    <a href="${pageContext.request.contextPath}/stock/getPage?page=${pageInfo.pageNum+1}&size=5">下一页</a>
+                </li>
+                <li><a href="${pageContext.request.contextPath}/stock/getPage?page=${pageInfo.pages}&size=5"
+                       aria-label="Next">尾页</a></li>
+            </ul>
+        </div>
     </div>
+
     <!--左侧导航区-->
     <div class="aside">
         <div class="nav">
             <ul>
-                <li><a href="setting.html" target="main">农产品管理</a></li>
+                <li><a href="${pageContext.request.contextPath}/products/getPage target="main">农产品管理</a></li>
                 <li><a href="user.html" target="main">农产品分类管理</a></li>
-                <li><a href="article.html" target="main" class="active">库存管理</a></li>
+                <li><a href="index.jsp" target="main" class="active">库存管理</a></li>
                 <li><a href="category.html" target="main">订单管理</a></li>
             </ul>
         </div>

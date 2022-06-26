@@ -15,9 +15,9 @@ public interface StockMapper {
 
     List<StockVo> getPage();
 
-    List<StockVo> query(String sockName);
+    List<StockVo> query(@Param("sockName") String sockName);
 
-    void updateById(int id);
+    void updateById(@Param("id") int id);
 
-    StockVo get(@Param("categoryId") Integer id);
+    StockVo get(@Param("id") Integer id);
 }
