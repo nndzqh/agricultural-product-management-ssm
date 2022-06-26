@@ -60,4 +60,14 @@ public class StockServiceImpl implements StockService {
         stockMapper.add(stockVo);
     }
 
+    @Override
+    public boolean getByproductsId(Integer productsId) {
+        return stockMapper.getByproductsId(productsId);
+    }
+
+    @Override
+    public void updateNum(StockVo stockVo) {
+        stockMapper.updateNum(stockVo);
+    }
+
 }

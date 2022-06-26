@@ -1,7 +1,9 @@
 package com.imnu.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.imnu.bean.po.Products;
 import com.imnu.bean.vo.StockVo;
+import com.imnu.service.ProductsService;
 import com.imnu.service.StockService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -26,6 +28,10 @@ public class StockController {
     @Resource
     @Qualifier("StockServiceImpl")
     private StockService stockService;
+
+    @Resource
+    @Qualifier("ProductsServiceImpl")
+    private ProductsService productsService;
 
     /**
      * 分页带查询功能
@@ -82,9 +88,10 @@ public class StockController {
 
     @RequestMapping("findStockName")
     public String findStockName(Model model) {
-        List<StockVo> stockList = stockService.getAll();
-        model.addAttribute("stockList", stockList);
-        System.out.println(stockList);
+        List<Products> productsList = productsService.getAll();
+        System.out.println(productsList);
+        model.addAttribute("productsList", productsList);
+        System.out.println(productsList);
         return "insert";
     }
 
@@ -92,7 +99,12 @@ public class StockController {
     public String insert(StockVo stockVo) {
         System.out.println(stockVo);
         stockVo.setCreateTime(new Date());
-        stockService.add(stockVo);
+        boolean one = stockService.getByproductsId(stockVo.getProductsId());
+        if (one){
+            stockService.updateNum(stockVo);
+        }else {
+            stockService.add(stockVo);
+        }
         return "redirect:/stock/getPage";
     }
 

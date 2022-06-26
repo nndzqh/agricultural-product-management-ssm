@@ -1,28 +1,25 @@
 package com.imnu.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.imnu.bean.vo.ProductsVo;
 import com.imnu.bean.po.Category;
 import com.imnu.bean.po.Products;
+import com.imnu.bean.vo.ProductsVo;
 import com.imnu.service.CategoryService;
 import com.imnu.service.FileService;
 import com.imnu.service.ProductsService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -75,7 +72,6 @@ public class ProductsController {
         List<Category> categoryList = categoryService.getAll();
         model.addAttribute("categoryList",categoryList);
         model.addAttribute("products",productsVo);
-        System.out.println(productsVo);
         return "update";
     }
 

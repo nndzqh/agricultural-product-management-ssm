@@ -58,4 +58,10 @@ public interface ProductsMapper {
      * @return
      */
     List<Products> getPageFind(String productsName);
+
+    /**
+     * 获得所以的产品信息
+     * @return list
+     */
+    List<Products> getAll();
 }

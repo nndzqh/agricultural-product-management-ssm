@@ -17,11 +17,12 @@
 <div class="content">
     <form action="${pageContext.request.contextPath}/stock/insert" method="post"
           style="display: flex;flex-direction: column;">
+
             <div class="si">
                 <span>产品名称</span>
-                <select name="stockId">
-                    <c:forEach var="stock" items="${stockList}">
-                        <option value="${stock.id}">${stock.name}</option>
+                <select name="productsId">
+                    <c:forEach var="products" items="${productsList}">
+                        <option value="${products.id}" >${products.name}</option>
                     </c:forEach>
                 </select>
             </div>

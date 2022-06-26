@@ -25,4 +25,17 @@ public interface StockMapper {
     List<StockVo> getAll();
 
     void add(StockVo stockVo);
+
+    /**
+     * 查询是否有相同的产品
+     * @param productsId 产品id
+     * @return Boolean
+     */
+    boolean getByproductsId(@Param("productsId") Integer productsId);
+
+    /**
+     * 修改数量
+     * @param  stockVo stock
+     */
+    void updateNum(StockVo stockVo);
 }
