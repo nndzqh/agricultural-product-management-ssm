@@ -42,6 +42,13 @@ public class ProductsServiceImpl implements ProductsService {
     }
 
     @Override
+    public int deleteByCategroyId(int categoryid) {
+        int cont=productsMapper.findbyCategory(categoryid);
+        return cont;
+    }
+
+
+    @Override
     public void update(Products products) {
         productsMapper.update(products);
     }

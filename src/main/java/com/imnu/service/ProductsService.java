@@ -36,6 +36,14 @@ public interface ProductsService {
      */
     List<Products> getPage(int page, int size);
 
+
+
+    /**
+     * 删除
+     * @param categoryid 种类id
+     */
+    int deleteByCategroyId(int categoryid);
+
     /**
      * 修改产品信息
      * @param products 产品

@@ -45,4 +45,10 @@ public interface ProductsMapper {
     void update(Products products);
 
 
+
+    /**
+     * 根据categoryid查询
+     * @return categoryid
+     */
+    int findbyCategory(int categoryid);
 }
