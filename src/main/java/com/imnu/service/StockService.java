@@ -27,4 +27,17 @@ public interface StockService {
     List<StockVo> getAll();
 
     void add(StockVo stockVo);
+
+    /**
+     * 查询是否有相同的产品
+     * @param productsId 产品id
+     * @return boolean
+     */
+    boolean getByproductsId(Integer productsId);
+
+    /**
+     * 修改数量
+     * @param stockVo stock
+     */
+    void updateNum(StockVo stockVo);
 }

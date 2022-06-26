@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
 import java.util.List;
-import java.util.Objects;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -55,17 +54,18 @@ public class OrderController {
     @RequestMapping(value = "get", method = RequestMethod.GET)
     public String get(Integer orderId, Model model){
         Orders orders = ordersService.get(orderId);
-        if (!Objects.isNull(orders)){
-            model.addAttribute("orders",orders);
-            return "";
+        if (orders.getState()==3){
+            model.addAttribute("order",orders);
+            return "update";
         }
-        return "";
+        return "redirect:/orders/getPage";
     }
     
     @RequestMapping(value = "update", method = RequestMethod.POST)
-    public String update(Orders orders){
-        ordersService.update(orders);
-        return "";
+    public String update(Orders order){
+        System.out.println(order);
+        ordersService.update(order);
+        return "redirect:/orders/getPage";
     }
 
     @RequestMapping(value = "getPage", method = RequestMethod.GET)
@@ -82,6 +82,6 @@ public class OrderController {
         }).collect(Collectors.toList());
         PageInfo<OrdersVo> pageInfo = new PageInfo<>(ordersVoList);
         model.addAttribute("pageInfo",pageInfo);
-        return "order";
+        return "index";
     }
 }

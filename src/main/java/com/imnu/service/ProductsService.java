@@ -58,4 +58,10 @@ public interface ProductsService {
      * @return list
      */
     List<Products> getPageFind(int page, int size, String productsName);
+
+    /**
+     * 获取产品所以信息
+     * @return list
+     */
+    List<Products> getAll();
 }

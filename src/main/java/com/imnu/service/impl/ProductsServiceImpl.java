@@ -59,4 +59,9 @@ public class ProductsServiceImpl implements ProductsService {
         return productsMapper.getPageFind(productsName);
     }
 
+    @Override
+    public List<Products> getAll() {
+        return productsMapper.getAll();
+    }
+
 }

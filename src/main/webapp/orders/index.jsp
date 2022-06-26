@@ -52,11 +52,19 @@
                         <td>${orders.contact}</td>
                         <td>${orders.phone}</td>
                         <td>${orders.productName}</td>
-                        <td>${orders.state}</td>
+                        <td>
+                            <c:if test="${orders.state == 0}">已支付</c:if>
+                            <c:if test="${orders.state == 1}">未支付</c:if>
+                            <c:if test="${orders.state == 2}">已发货</c:if>
+                            <c:if test="${orders.state == 3}">未发货</c:if>
+                            <c:if test="${orders.state == 4}">已签收</c:if>
+                            <c:if test="${orders.state == 5}">未签收</c:if>
+                        </td>
                         <td>${orders.createTime}</td>
                         <td>${orders.endTime}</td>
                         <td><a href="${pageContext.request.contextPath}/orders/delete?ordersId=${orders.id}" class="add_button"/>删 除</a>
-                            <a href="#" class="add_button"/>修 改</a>
+                            <a href="${pageContext.request.contextPath}/orders/get?orderId=${orders.id}"
+                               class="add_button"/>修 改</a>
                         </td>
                     </tr>
                 </c:forEach>

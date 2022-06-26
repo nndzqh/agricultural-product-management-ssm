@@ -37,5 +37,8 @@
             </if>
         </where>
     </select>
+    <select id="getAll" resultType="com.imnu.bean.po.Products">
+        select * from products
+    </select>
 
 </mapper>

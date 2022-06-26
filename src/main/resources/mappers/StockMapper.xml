@@ -15,6 +15,10 @@
         where stock.id = #{id}
     </update>
 
+    <update id="updateNum">
+        update stock set sum = sum + #{sum} where products_id = #{productsId}
+    </update>
+
     <select id="getPage" resultType="com.imnu.bean.vo.StockVo">
         SELECT products.`name`,
                stock.sum,
@@ -69,6 +73,10 @@
         FROM stock,
              products
         WHERE stock.products_id &lt;&gt; products.id;
+    </select>
+
+    <select id="getByproductsId" resultType="java.lang.Boolean">
+        select * from stock where products_id = #{productsId}
     </select>
 
 </mapper>
