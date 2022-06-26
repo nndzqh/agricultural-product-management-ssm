@@ -18,7 +18,9 @@ import java.util.UUID;
  * @author WenWangXin
  * @create 2022-06-25-2:25
  */
+
 @Controller
+@RequestMapping("orders")
 public class OrderController {
 
     @Resource

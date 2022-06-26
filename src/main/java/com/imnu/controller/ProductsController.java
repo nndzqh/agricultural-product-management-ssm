@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -23,7 +24,7 @@ import java.util.stream.Collectors;
  * @author WenWangXin
  * @create 2022-06-25-2:26
  */
-@Controller()
+@Controller
 @RequestMapping("products")
 public class ProductsController {
 
@@ -37,8 +38,9 @@ public class ProductsController {
 
     @RequestMapping(value = "add",method = RequestMethod.POST)
     public String add(Products products){
+        products.setCreateTime(new Date());
         productsService.add(products);
-        return "redirect:";
+        return "redirect:/products/getPage";
     }
 
     @RequestMapping(value = "delete", method = RequestMethod.GET)
@@ -50,12 +52,12 @@ public class ProductsController {
     @RequestMapping(value = "get", method = RequestMethod.GET)
     public String get(Integer productId, Model model){
         Products products = productsService.get(productId);
-        if (!Objects.isNull(products)){
-            model.addAttribute("products",products);
-            return "";
-        }else {
-            return "";
-        }
+        ProductsVo productsVo = new ProductsVo();
+        BeanUtils.copyProperties(products,productsVo);
+        Category category = categoryService.get(productId);
+        productsVo.setCategoryName(category.getName());
+        model.addAttribute("products",productsVo);
+        return "update";
     }
 
     @RequestMapping(value = "update", method = RequestMethod.POST)
@@ -95,6 +97,13 @@ public class ProductsController {
         PageInfo<ProductsVo> pageInfo = new PageInfo<>(productsVoList);
         model.addAttribute("pageInfo",pageInfo);
         return "index";
+    }
+
+    @RequestMapping("findCategoryName")
+    public String findCategoryName(Model model){
+        List<Category> categoryList = categoryService.getAll();
+        model.addAttribute("categoryList",categoryList);
+        return "add";
     }
 
 }
