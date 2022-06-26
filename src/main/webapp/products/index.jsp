@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <title>农产品后台管理后台</title>
 </head>
 <body>
 <!--顶部信息区-->
@@ -76,10 +76,10 @@
     <div class="aside">
         <div class="nav">
             <ul>
-                <li><a href="${pageContext.request.contextPath}/products/getPage" target="main" class="active">农产品管理</a></li>
-                <li><a href="${pageContext.request.contextPath}/category/page" target="main">农产品分类管理</a></li>
-                <li><a href="${pageContext.request.contextPath}/stock/getPage" target="main">库存管理</a></li>
-                <li><a href="${pageContext.request.contextPath}/orders/getPage" target="main">订单管理</a></li>
+                <li><a href="${pageContext.request.contextPath}/products/getPage" target="_self" class="active">农产品管理</a></li>
+                <li><a href="${pageContext.request.contextPath}/category/page" target="_self">农产品分类管理</a></li>
+                <li><a href="${pageContext.request.contextPath}/stock/getPage" target="_self">库存管理</a></li>
+                <li><a href="${pageContext.request.contextPath}/orders/getPage" target="_self">订单管理</a></li>
             </ul>
         </div>
     </div>
@@ -126,11 +126,7 @@
 
     a {
         color: #000;
-        text-decoration: none;
-    }
-
-    a:hover {
-        color: brown;
+        text-decoration-line: none;
     }
 
     .header {
@@ -155,10 +151,8 @@
 
     }
 
-    /*侧边导航栏*/
     .main {
         width: 80%;
-        height: 800px;
         margin: 30px auto 0;
         padding-left: 260px;
         overflow: hidden;
@@ -167,7 +161,7 @@
     .main .content {
         float: left;
         width: 100%;
-        min-height: 100%;
+        padding-bottom:20px;
         background: #eee;
         overflow: hidden;
         box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
@@ -188,7 +182,7 @@
     .main .aside .nav li {
         line-height: 2rem;
     }
-    .main .aside .nav li:first-child,
+
     .main .aside .nav li a {
         padding: 10px 15px;
         display: block;
@@ -200,16 +194,10 @@
         padding-left: 15px;
         margin-left: -3px;
     }
-    .content_table,
-    .addStu {
+    .content_table{
         background-color: #ffffff;
         margin: 20px;
-
-    }
-
-    .addStu {
-        background-color: #ffffff;
-        margin: 10px 20px;
+        padding: 10px 15px;
     }
 
     .content_table table {

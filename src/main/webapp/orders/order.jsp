@@ -9,7 +9,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>农产品后台管理后台</title>
 </head>
 <body>
 <!--顶部信息区-->
@@ -22,7 +22,7 @@
     <!--主体-->
     <div class="content">
         <div class="content_header">
-            <input class="content_input" placeholder="请输入农产品名称" type="text" style="">
+            <input class="content_input" placeholder="请输入订单编号" type="text" style="">
             <button class="content_button">查 询</button>
         </div>
         <div class="content_table">
@@ -38,7 +38,7 @@
                     <th>订单状态</th>
                     <th>订单创建时间</th>
                     <th>订单完成时间</th>
-                    <th>操作</th>
+                    <th style="width: 200px">操作</th>
                 </tr>
                 <c:forEach var="orders" items="${pageInfo.list}" varStatus="s">
 
@@ -77,10 +77,10 @@
     <div class="aside">
         <div class="nav">
             <ul>
-                <li><a href="${pageContext.request.contextPath}/products/getPage" target="main" >农产品管理</a></li>
-                <li><a href="${pageContext.request.contextPath}/category/page" >农产品分类管理</a></li>
-                <li><a href="${pageContext.request.contextPath}/stock/getPage" >库存管理</a></li>
-                <li><a href="${pageContext.request.contextPath}/orders/getPage">订单管理</a></li>
+                <li><a href="${pageContext.request.contextPath}/products/getPage" target="_self" >农产品管理</a></li>
+                <li><a href="${pageContext.request.contextPath}/category/page" target="_self">农产品分类管理</a></li>
+                <li><a href="${pageContext.request.contextPath}/stock/getPage" target="_self">库存管理</a></li>
+                <li><a href="${pageContext.request.contextPath}/orders/getPage" target="_self" class="active">订单管理</a></li>
             </ul>
         </div>
     </div>
@@ -92,6 +92,27 @@
 
 </script>
 <style>
+    .add_button {
+        line-height: 15px;
+        font-size: 14px;
+        background-color: rgb(65, 192, 244);
+        border: 1px solid rgb(65, 192, 244);
+        padding: 13px 20px;
+        border-radius: 15px;
+        height: 15px;
+        margin-bottom: 2px;
+        margin-left: 13px;
+        color: #ffffff;
+    }
+    .pagination {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .pagination li {
+        margin-left: 10px;
+    }
     * {
         margin: 0px;
         padding: 0px;
@@ -107,11 +128,9 @@
 
     a {
         color: #000;
+        text-decoration-line: none;
     }
 
-    a:hover {
-        color: brown;
-    }
 
     .header {
         background:rgb(9, 159, 247);
@@ -135,10 +154,8 @@
 
     }
 
-    /*侧边导航栏*/
     .main {
         width: 80%;
-        height: 800px;
         margin: 30px auto 0;
         padding-left: 260px;
         overflow: hidden;
@@ -147,7 +164,7 @@
     .main .content {
         float: left;
         width: 100%;
-        min-height: 100%;
+        padding-bottom:20px;
         background: #eee;
         overflow: hidden;
         box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
@@ -181,22 +198,15 @@
         margin-left: -3px;
     }
     .content_table{
+        padding: 10px 15px;
         background-color: #ffffff;
         margin: 20px;
-        width: 100%;
-        overflow-x: scroll;
-    }
-    .addStu {
-        background-color: #ffffff;
-        margin: 20px;
+        width: calc(100% - 70px);
     }
 
-    .addStu {
-        background-color: #ffffff;
-        margin: 10px 20px;
-    }
 
     .content_table table {
+        overflow-x: scroll;
         border-collapse: collapse;
         width: 100%;
     }

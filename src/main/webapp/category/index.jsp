@@ -10,8 +10,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <link href="./static/css/style.css">
+    <title>农产品后台管理后台</title>
 </head>
 <body>
 <!--顶部信息区-->
@@ -25,7 +24,7 @@
     <div class="content">
         <div class="content_header">
             <form action="${pageContext.request.contextPath}/category/page" method="get">
-                <input class="content_input" placeholder="请输入农产品名称" type="text" name="name" style="">
+                <input class="content_input" placeholder="请输入农产品分类名称" type="text" name="name" style="">
                 <button class="content_button">查 询</button>
             </form>
             <a class="add_button" href="./addCategory.jsp" target="main">添加农产品分类</a>
@@ -71,10 +70,10 @@
     <div class="aside">
         <div class="nav">
             <ul>
-                <li><a href="${pageContext.request.contextPath}/products/getPage" target="main" >农产品管理</a></li>
-                <li><a href="${pageContext.request.contextPath}/category/page" target="main" class="active">农产品分类管理</a></li>
-                <li><a href="${pageContext.request.contextPath}/stock/getPage" target="main">库存管理</a></li>
-                <li><a href="${pageContext.request.contextPath}/orders/getPage" target="main">订单管理</a></li>
+                <li><a href="${pageContext.request.contextPath}/products/getPage" target="_self"  >农产品管理</a></li>
+                <li><a href="${pageContext.request.contextPath}/category/page" target="_self" class="active">农产品分类管理</a></li>
+                <li><a href="${pageContext.request.contextPath}/stock/getPage" target="_self">库存管理</a></li>
+                <li><a href="${pageContext.request.contextPath}/orders/getPage" target="_self">订单管理</a></li>
             </ul>
         </div>
     </div>
@@ -159,10 +158,8 @@
 
     }
 
-    /*侧边导航栏*/
     .main {
         width: 80%;
-        height: 800px;
         margin: 30px auto 0;
         padding-left: 260px;
         overflow: hidden;
@@ -171,7 +168,7 @@
     .main .content {
         float: left;
         width: 100%;
-        min-height: 100%;
+        padding-bottom:20px;
         background: #eee;
         overflow: hidden;
         box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
@@ -208,6 +205,7 @@
     .addStu {
         background-color: #ffffff;
         margin: 20px;
+        padding: 10px 15px;
 
     }
 

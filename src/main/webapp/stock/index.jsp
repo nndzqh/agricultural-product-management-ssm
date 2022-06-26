@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <title>农产品后台管理后台</title>
 </head>
 <body>
 <!--顶部信息区-->
@@ -43,7 +43,7 @@
                         <td>${stockVo.id}</td>
                         <td>${stockVo.name}</td>
                         <td>${stockVo.sum}</td>
-                        <td><a class="add_button" href="${pageContext.request.contextPath}/stock/get?stockId=${stockVo.id}" class="add_button"/>修 改</a></td>
+                        <td><a class="add_button" href="${pageContext.request.contextPath}/stock/get?stockId=${stockVo.id}" class="add_button">修 改</a></td>
                         </td>
                     </tr>
                 </c:forEach>
@@ -76,10 +76,10 @@
     <div class="aside">
         <div class="nav">
             <ul>
-                <li><a href="${pageContext.request.contextPath}/products/getPage target="main">农产品管理</a></li>
-                <li><a href="${pageContext.request.contextPath}/category/page</a></li>
-                <li><a href="${pageContext.request.contextPath}/stock/getPage " target="main" class="active">库存管理</a></li>
-                <li><a href="${pageContext.request.contextPath}/orders/getPage" target="main">订单管理</a></li>
+                <li><a href="${pageContext.request.contextPath}/products/getPage" target="_self">农产品管理</a></li>
+                <li><a href="${pageContext.request.contextPath}/category/page" target="_self">农产品分类管理</a></li>
+                <li><a href="${pageContext.request.contextPath}/stock/getPage" target="_self" class="active">库存管理</a></li>
+                <li><a href="${pageContext.request.contextPath}/orders/getPage" target="_self">订单管理</a></li>
             </ul>
         </div>
     </div>
@@ -157,10 +157,8 @@
 
     }
 
-    /*侧边导航栏*/
     .main {
         width: 80%;
-        height: 800px;
         margin: 30px auto 0;
         padding-left: 260px;
         overflow: hidden;
@@ -169,7 +167,7 @@
     .main .content {
         float: left;
         width: 100%;
-        min-height: 100%;
+        padding-bottom:20px;
         background: #eee;
         overflow: hidden;
         box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
@@ -205,17 +203,14 @@
         margin-left: -3px;
     }
 
-    .content_table,
-    .addStu {
+    .content_table {
         background-color: #ffffff;
         margin: 20px;
+        padding: 10px 15px;
 
     }
 
-    .addStu {
-        background-color: #ffffff;
-        margin: 10px 20px;
-    }
+
 
     .content_table table {
         border-collapse: collapse;
