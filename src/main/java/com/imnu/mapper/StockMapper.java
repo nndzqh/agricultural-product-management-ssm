@@ -1,6 +1,8 @@
 package com.imnu.mapper;
 
-import com.imnu.bean.Stock;
+import com.imnu.bean.VO.StockVO;
+
+import java.util.List;
 
 /**
 * @author 63547
@@ -10,4 +12,7 @@ import com.imnu.bean.Stock;
 */
 public interface StockMapper {
 
+    List<StockVO> getPage();
+
+    List<StockVO> query(String sockName);
 }
