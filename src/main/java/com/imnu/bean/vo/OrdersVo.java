@@ -6,6 +6,10 @@ import java.util.Date;
 @Data
 public class OrdersVo {
     /**
+     * 订单id
+     */
+    private Integer id;
+    /**
      * 订单号
      */
     private String number;

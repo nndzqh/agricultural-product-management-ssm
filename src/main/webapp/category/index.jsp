@@ -24,8 +24,11 @@
     <!--主体-->
     <div class="content">
         <div class="content_header">
-            <input class="content_input" placeholder="请输入农产品名称" type="text" style="">
-            <button class="content_button">查 询</button>
+            <form action="${pageContext.request.contextPath}/category/page" method="get">
+                <input class="content_input" placeholder="请输入农产品名称" type="text" name="name" style="">
+                <button class="content_button">查 询</button>
+            </form>
+            <a href="./addCategory.jsp" target="main"/>添加农产品分类
             <button class="content_button">添加农产品分类</button>
         </div>
         <div class="content_table">
@@ -36,33 +39,34 @@
                     <th>修改时间</th>
                     <th>操作</th>
                 </tr>
-                <c:forEach items="categorylist" var="category">
+                <c:forEach items="${pageInfo.list}" var="c" varStatus="ca">
                 <tr>
-                    <td>农产品分类</td>
-                    <td>2022.3.6 6:55</td>
-                    <td>2022.3.6 12:00</td>
+                    <td>${ca.count}</td>
+                    <td>${c.name}</td>
+                    <td>${c.createTime}</td>
+                    <td>${c.updateTime}</td>
                     <td>
-                        <button class="content_button">删 除</button>
-                        <button class="content_button">修 改</button>
+                       <%-- <button class="content_button">删 除</button>--%>
+                        <a href="${pageContext.request.contextPath}/category/getById?id=${c.id}" target="main"/>修 改
+<%--                        <button class="content_button">删除</button>--%>
+                        <a href="${pageContext.request.contextPath}/category/delete?id=${c.id}" target="main" onclick="detal()"/>删除
                     </td>
                 </tr>
                 </c:forEach>
             </table>
         </div>
         <!-- 分页 -->
-        <form action="demoServlet">
-            <table>
-                <tr>
-                    <c:forEach items="${requestScope.pages}" var="pages" varStatus="s">
-                        <td>
-                            <button type="submit" name="currentPage" value="${pages}">
-                                    ${pages}
-                            </button>
-                        </td>
-                    </c:forEach>
-                </tr>
-            </table>
-        </form>
+        <div class="box-tools pull-right">
+            <ul class="pagination" style="">
+                <li><a href="${pageContext.request.contextPath}/category/page?page=1&size=5" aria-label="Previous">首页</a></li>
+                <li><a href="${pageContext.request.contextPath}/category/page?page=${pageInfo.pageNum-1}&size=5">上一页</a></li>
+                <c:forEach begin="1" end="${pageInfo.pages+1}" var="pageNum">
+                    <li><a href="${pageContext.request.contextPath}/category/page?page=${pageNum}&size=5">${pageNum}</a></li>
+                </c:forEach>
+                <li><a href="${pageContext.request.contextPath}/category/page?page=${pageInfo.pageNum+1}&size=5">下一页</a></li>
+                <li><a href="${pageContext.request.contextPath}/category/page?page=${pageInfo.pages}&size=5" aria-label="Next">尾页</a></li>
+            </ul>
+        </div>
     </div>
     <!--左侧导航区-->
     <div class="aside">
@@ -75,8 +79,9 @@
             </ul>
         </div>
     </div>
-    </main>
+
 </div>
+</body>>
 <script src="http://code.jquery.com/jquery-1.4.1.js"></script>
 <script type="text/javascript">
 

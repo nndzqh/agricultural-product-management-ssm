@@ -5,11 +5,11 @@
 <mapper namespace="com.imnu.mapper.ProductsMapper">
 
     <insert id="add">
-        insert into products(category_id, name, img, create_time, update_time) values (#{categoryId},#{name},#{img},#{createTime},#{updateTime})
+        insert into products(category_id, name, img, state, create_time, update_time) values (#{categoryId},#{name},#{img},0,#{createTime},#{updateTime})
     </insert>
 
     <update id="update">
-        update products set category_id = #{categoryId}, name=#{name}, img=#{img}, state=#{state}, update_time=#{updateTime}
+        update products set category_id = #{categoryId}, name=#{name}, img=#{img}, state=#{state}, update_time=#{updateTime} where id = #{id}
     </update>
 
 

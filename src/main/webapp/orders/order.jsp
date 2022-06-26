@@ -32,6 +32,7 @@
                     <th>订单编号</th>
                     <th>数量</th>
                     <th>地址</th>
+                    <th>联系人</th>
                     <th>联系人电话</th>
                     <th>产品名称</th>
                     <th>订单状态</th>
@@ -42,14 +43,15 @@
                 <c:forEach var="orders" items="${pageInfo.list}" varStatus="s">
 
                     <tr>
-                        <td>s.count</td>
-                        <td>orders.number</td>
-                        <td>orders.num</td>
-                        <td>orders.address</td>
-                        <td>orders.phone</td>
-                        <td>orders.state</td>
-                        <td>orders.createTime</td>
-                        <td>orders.endTime</td>
+                        <td>${s.count}</td>
+                        <td>${orders.number}</td>
+                        <td>${orders.num}</td>
+                        <td>${orders.address}</td>
+                        <td>${orders.contact}</td>
+                        <td>${orders.phone}</td>
+                        <td>${orders.state}</td>
+                        <td>${orders.createTime}</td>
+                        <td>${orders.endTime}</td>
                         <td><a href="${pageContext.request.contextPath}/orders/delete?ordersId=${orders.id}" class="add_button"/>删 除</a>
                             <a href="#" class="add_button"/>修 改</a>
                         </td>

@@ -45,9 +45,9 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public List<Category> getPage(int page, int size) {
+    public List<Category> getPage(int page, int size ,String name) {
         PageHelper.startPage(page,size);
-        return categoryMapper.getPage();
+        return categoryMapper.getPage(name);
     }
 
     @Override

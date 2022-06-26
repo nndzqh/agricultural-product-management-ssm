@@ -20,7 +20,7 @@ import java.util.Map;
  * @author ShenChao
  * @create 2022-06-25-2:28
  */
-@Controller
+@Controller()
 @RequestMapping("/category")
 public class CategoryController {
 
@@ -29,13 +29,16 @@ public class CategoryController {
     private CategoryService categoryService;
     /**
      * 添加种类
-     * @param category
+     * @param name,sort
      * @return
      */
     @RequestMapping(value = "/add",method = RequestMethod.POST)
-    public String add(Category category){
+    public String add(@RequestParam("name") String name,@RequestParam("sort") Integer sort){
+        Category category = new Category();
+        category.setSort(sort);
+        category.setName(name);
         categoryService.add(category);
-        return "";
+        return "redirect:/category/page";
     }
     /**
      * 删除种类
@@ -43,44 +46,49 @@ public class CategoryController {
      * @return
      */
     @RequestMapping(value = "/delete",method = RequestMethod.DELETE)
-    public Map<String,Boolean> delete(int id){
+    public Map<String,Boolean> delete(@RequestParam("id") int id){
         Map<String, Boolean> map=new HashMap<String, Boolean>();
         Boolean flag=categoryService.delete(id);
         map.put("Boolean",flag);
        return map;
     }
     /**
-     * 删除种类
-     * @param category
+     * 更新种类
+     * @param name,sort
      * @return
      */
-    @RequestMapping(value = "/update",method = RequestMethod.PUT)
-    public String update(Category category){
+    @RequestMapping(value = "/update",method = RequestMethod.POST)
+    public String update(@RequestParam("name") String name,@RequestParam("sort") Integer sort,@RequestParam("id") Integer id){
+        Category category = new Category();
+        category.setId(id);
+        category.setName(name);
+        category.setSort(sort);
         categoryService.update(category);
-        return "";
+        return "redirect:/category/page";
     }
     /**
      * 分页查询
-     * @param page,size
+     * @param page,size name
      * @return
      */
     @RequestMapping(value = "/page",method = RequestMethod.GET)
     public String page(@RequestParam(defaultValue = "1") int page,
-                       @RequestParam(defaultValue = "5")int size, Model model){
-        List<Category> list=categoryService.getPage(page,size);
+                       @RequestParam(defaultValue = "5")int size, Model model,String name){
+        List<Category> list=categoryService.getPage(page,size,name);
         PageInfo pageInfo=new PageInfo(list);
         model.addAttribute("pageInfo",pageInfo);
-        return "category";
+        return "index";
     }
+
     /**
-     * 分页查询
-     * @param name
-     * @return
+     * 通过id查询
+     * @param  id
+     * @return category
      */
-    @RequestMapping("/find")
-    public String find(String name,Model model){
-        List<Category> categorylist =categoryService.find(name);
-        model.addAttribute("categorylist",categorylist);
-        return "category";
+    @RequestMapping(value = "/getById",method = RequestMethod.GET)
+    public String getByid(@RequestParam("id") Integer id,Model model){
+        Category category = categoryService.get(id);
+        model.addAttribute("category",category);
+        return "updateCategory";
     }
 }

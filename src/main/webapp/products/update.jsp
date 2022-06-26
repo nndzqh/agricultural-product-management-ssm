@@ -17,16 +17,17 @@
 <body>
 <div class="content">
   <form action="${pageContext.request.contextPath}/products/update" method="post" style="display: flex;flex-direction: column;">
+    <input type="hidden" value="${products.id}" name="id">
     <div class="si">
       <span>请输入产品名称</span>
-      <input type="text" name="name" value="${name}">
+      <input type="text" name="name" value="${products.name}">
     </div>
     <div class="si">
       <span>请选择分类</span>
       <select name="categoryId">
         <c:forEach var="category" items="${categoryList}">
         <option value="${category.id}"
-                <c:if test='${category.id == categoryId}'>selected='selected'</c:if>>
+                <c:if test='${category.id == products.categoryId}'>selected='selected'</c:if>>
           ${category.name}
         </option>
         </c:forEach>
@@ -36,8 +37,12 @@
       <span>请上传图片</span>
       <input type="file" name="myfile" />
     </div>
-    <!-- 分类下拉框 -->
-    <button id="btn" tyle="submit">修改</button>
+    <div class="check_container">
+      <div><input type="radio" name="state" value="0" <c:if test='${products.state == 0}'>checked</c:if>>起 售</div>
+      <div><input type="radio" name="state" value="1" <c:if test='${products.state == 1}'>checked</c:if>>停 售</div>
+    </div>
+
+    <button id="btn" type="submit">修改</button>
   </form>
 </div>
 </body>
@@ -51,6 +56,21 @@
 
 </script>
 <style>
+  .check_container{
+    width: 50%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .check_container div{
+    display: flex;
+    align-items: center;
+  }
+  .check_container input{
+    width: 20px;
+    height: 20px;
+  }
   select{
     width: 208px;
     height: 34px;
