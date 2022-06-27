@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <title>农产品后台管理后台</title>
@@ -59,7 +60,7 @@
                             <c:if test="${orders.state == 4}">已签收</c:if>
                             <c:if test="${orders.state == 5}">未签收</c:if>
                         </td>
-                        <td>${orders.createTime}</td>
+                        <td><fmt:formatDate value="${orders.createTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                         <td><a href="${pageContext.request.contextPath}/orders/delete?ordersId=${orders.id}" class="add_button"/>删 除</a>
                             <a href="${pageContext.request.contextPath}/orders/get?orderId=${orders.id}"
                                class="add_button"/>修 改</a>
@@ -71,13 +72,17 @@
         <!-- 分页 -->
         <div class="box-tools pull-right">
             <ul class="pagination" style="">
-                <li><a href="${pageContext.request.contextPath}/orders/getPage?page=1&size=5" aria-label="Previous">首页</a></li>
-                <li><a href="${pageContext.request.contextPath}/orders/getPage?page=${pageInfo.pageNum-1}&size=5">上一页</a></li>
-                <c:forEach begin="1" end="${pageInfo.pages+1}" var="pageNum">
+                <c:if test="${pageInfo.pageNum != 1}">
+                    <li><a href="${pageContext.request.contextPath}/orders/getPage?page=1&size=5" aria-label="Previous">首页</a></li>
+                    <li><a href="${pageContext.request.contextPath}/orders/getPage?page=${pageInfo.pageNum-1}&size=5">上一页</a></li>
+                </c:if>
+                <c:forEach begin="1" end="${pageInfo.pages}" var="pageNum">
                     <li><a href="${pageContext.request.contextPath}/orders/getPage?page=${pageNum}&size=5">${pageNum}</a></li>
                 </c:forEach>
-                <li><a href="${pageContext.request.contextPath}/orders/getPage?page=${pageInfo.pageNum+1}&size=5">下一页</a></li>
-                <li><a href="${pageContext.request.contextPath}/orders/getPage?page=${pageInfo.pages}&size=5" aria-label="Next">尾页</a></li>
+                <c:if test="${pageInfo.pageNum != pageInfo.pages}">
+                    <li><a href="${pageContext.request.contextPath}/orders/getPage?page=${pageInfo.pageNum+1}&size=5">下一页</a></li>
+                    <li><a href="${pageContext.request.contextPath}/orders/getPage?page=${pageInfo.pages}&size=5" aria-label="Next">尾页</a></li>
+                </c:if>
             </ul>
         </div>
     </div>

@@ -24,6 +24,15 @@
     <select id="getPage" resultType="com.imnu.bean.po.Products">
         select * from products
     </select>
+    <select id="getPageVo" resultType="com.imnu.bean.vo.ProductsVo">
+        SELECT products.*,
+               category.`name` as categoryName
+        FROM products
+                 INNER JOIN
+             category
+             ON
+                 products.category_id = category.id
+    </select>
 
     <select id="findbyCategory" resultType="java.lang.Integer">
         SELECT COUNT(*) FROM products WHERE category_id=#{id};

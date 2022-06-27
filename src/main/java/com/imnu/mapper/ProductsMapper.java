@@ -1,6 +1,7 @@
 package com.imnu.mapper;
 
 import com.imnu.bean.po.Products;
+import com.imnu.bean.vo.ProductsVo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -38,6 +39,9 @@ public interface ProductsMapper {
      */
     List<Products> getPage();
 
+    List<ProductsVo> getPageVo();
+
+
     /**
      * 修改产品信息
      * @param products 产品
@@ -64,4 +68,5 @@ public interface ProductsMapper {
      * @return list
      */
     List<Products> getAll();
+
 }

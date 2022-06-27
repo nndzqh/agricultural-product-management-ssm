@@ -51,7 +51,7 @@
                             <c:if test="${product.state == 1}">停售</c:if>
                         </td>
                         <td>${product.categoryName}</td>
-                        <td>${product.createTime}</td>
+                        <td><fmt:formatDate value="${product.createTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                         <td><a href="${pageContext.request.contextPath}/products/delete?productId=${product.id}" class="add_button"/>删 除</a>
                             <a href="${pageContext.request.contextPath}/products/get?productId=${product.id}" class="add_button"/>修 改</a>
                         </td>
@@ -62,13 +62,22 @@
         <!-- 分页 -->
         <div class="box-tools pull-right">
             <ul class="pagination" style="">
-                <li><a href="${pageContext.request.contextPath}/products/getPage?page=1&size=5" aria-label="Previous">首页</a></li>
-                <li><a href="${pageContext.request.contextPath}/products/getPage?page=${pageInfo.pageNum-1}&size=5">上一页</a></li>
-                <c:forEach begin="1" end="${pageInfo.pages+1}" var="pageNum">
-                    <li><a href="${pageContext.request.contextPath}/products/getPage?page=${pageNum}&size=5">${pageNum}</a></li>
+                <c:if test="${pageInfo.pageNum != 1}">
+                    <li><a href="${pageContext.request.contextPath}/products/getPage?page=1&size=5"
+                           aria-label="Previous">首页</a></li>
+                    <li><a href="${pageContext.request.contextPath}/products/getPage?page=${pageInfo.pageNum-1}&size=5">上一页</a>
+                    </li>
+                </c:if>
+                <c:forEach begin="1" end="${pageInfo.pages}" var="pageNum">
+                    <li><a  href="${pageContext.request.contextPath}/products/getPage?page=${pageNum}&size=5">${pageNum}</a></li>
                 </c:forEach>
-                <li><a href="${pageContext.request.contextPath}/products/getPage?page=${pageInfo.pageNum+1}&size=5">下一页</a></li>
-                <li><a href="${pageContext.request.contextPath}/products/getPage?page=${pageInfo.pages}&size=5" aria-label="Next">尾页</a></li>
+                <c:if test="${pageInfo.pageNum != pageInfo.pages}">
+                    <li><a href="${pageContext.request.contextPath}/products/getPage?page=${pageInfo.pageNum+1}&size=5">下一页</a>
+                    </li>
+                    <li><a href="${pageContext.request.contextPath}/products/getPage?page=${pageInfo.pages}&size=5"
+                           aria-label="Next">尾页</a></li>
+                </c:if>
+
             </ul>
         </div>
     </div>

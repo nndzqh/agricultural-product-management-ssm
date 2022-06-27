@@ -85,17 +85,9 @@ public class ProductsController {
     @RequestMapping(value = "getPage", method = RequestMethod.GET)
     public String getPage(@RequestParam(defaultValue = "1") int page,
                           @RequestParam(defaultValue = "5")int size, Model model){
-        List<Products> pageList = productsService.getPage(page,size);
-        List<ProductsVo> productsVoList = pageList.stream().map((item) ->{
-            ProductsVo productsVo = new ProductsVo();
-            BeanUtils.copyProperties(item, productsVo);
-            Category category = categoryService.get(item.getCategoryId());
-            productsVo.setCategoryName(category.getName());
-            return productsVo;
-        }).collect(Collectors.toList());
-        PageInfo<ProductsVo> pageInfo = new PageInfo<>(productsVoList);
+        List<ProductsVo> pageListVo = productsService.getPageVo(page, size);
+        PageInfo<ProductsVo> pageInfo = new PageInfo<>(pageListVo);
         model.addAttribute("pageInfo",pageInfo);
-        System.out.println(pageList);
         return "index";
     }
 

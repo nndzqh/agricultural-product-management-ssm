@@ -1,6 +1,7 @@
 package com.imnu.service;
 
 import com.imnu.bean.po.Products;
+import com.imnu.bean.vo.ProductsVo;
 
 import java.util.List;
 
@@ -36,6 +37,7 @@ public interface ProductsService {
      */
     List<Products> getPage(int page, int size);
 
+    List<ProductsVo> getPageVo(int page, int size);
 
 
     /**
@@ -64,4 +66,5 @@ public interface ProductsService {
      * @return list
      */
     List<Products> getAll();
+
 }

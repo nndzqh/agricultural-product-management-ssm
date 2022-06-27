@@ -3,7 +3,6 @@ package com.imnu.controller;
 import com.github.pagehelper.PageInfo;
 import com.imnu.bean.po.Category;
 import com.imnu.service.CategoryService;
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
