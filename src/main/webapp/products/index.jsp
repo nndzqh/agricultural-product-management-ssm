@@ -51,7 +51,7 @@
                             <c:if test="${product.state == 1}">停售</c:if>
                         </td>
                         <td>${product.categoryName}</td>
-                        <td>${product.createTime}</td>
+                        <td><fmt:formatDate value="${product.createTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                         <td><a href="${pageContext.request.contextPath}/products/delete?productId=${product.id}" class="add_button"/>删 除</a>
                             <a href="${pageContext.request.contextPath}/products/get?productId=${product.id}" class="add_button"/>修 改</a>
                         </td>

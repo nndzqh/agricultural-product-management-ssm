@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <title>农产品后台管理后台</title>
@@ -59,7 +60,7 @@
                             <c:if test="${orders.state == 4}">已签收</c:if>
                             <c:if test="${orders.state == 5}">未签收</c:if>
                         </td>
-                        <td>${orders.createTime}</td>
+                        <td><fmt:formatDate value="${orders.createTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                         <td><a href="${pageContext.request.contextPath}/orders/delete?ordersId=${orders.id}" class="add_button"/>删 除</a>
                             <a href="${pageContext.request.contextPath}/orders/get?orderId=${orders.id}"
                                class="add_button"/>修 改</a>

@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,8 +43,8 @@
                 <tr>
                     <td>${ca.count}</td>
                     <td>${c.name}</td>
-                    <td> ${c.createTime}</td>
-                    <td> ${c.updateTime} </td>
+                    <td><fmt:formatDate value="${c.createTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+                    <td><fmt:formatDate value="${c.updateTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                     <td>
                         <a class="add_button" href="${pageContext.request.contextPath}/category/getById?id=${c.id}" target="main"/>修 改
                         <a class="add_button" href="" target="main" onclick="detal(${c.id})"/>删除
