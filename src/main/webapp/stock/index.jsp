@@ -53,21 +53,25 @@
         <!-- 分页 -->
         <div class="box-tools pull-right">
             <ul class="pagination" style="">
-                <li><a href="${pageContext.request.contextPath}/stock/getPage?page=1&size=5"
-                       aria-label="Previous">首页</a></li>
-                <li>
-                    <a href="${pageContext.request.contextPath}/stock/getPage?page=${pageInfo.pageNum-1}&size=5">上一页</a>
-                </li>
+                <c:if test="${pageInfo.pageNum != 1}">
+                    <li><a href="${pageContext.request.contextPath}/stock/getPage?page=1&size=5"
+                           aria-label="Previous">首页</a></li>
+                    <li>
+                        <a href="${pageContext.request.contextPath}/stock/getPage?page=${pageInfo.pageNum-1}&size=5">上一页</a>
+                    </li>
+                </c:if>
                 <c:forEach begin="1" end="${pageInfo.pages}" var="pageNum">
                     <li>
                         <a href="${pageContext.request.contextPath}/stock/getPage?page=${pageNum}&size=5">${pageNum}</a>
                     </li>
                 </c:forEach>
-                <li>
+                <c:if test="${pageInfo.pageNum != pageInfo.pages} ">
+                    <li>
                     <a href="${pageContext.request.contextPath}/stock/getPage?page=${pageInfo.pageNum+1}&size=5">下一页</a>
-                </li>
-                <li><a href="${pageContext.request.contextPath}/stock/getPage?page=${pageInfo.pages}&size=5"
-                       aria-label="Next">尾页</a></li>
+                    </li>
+                    <li><a href="${pageContext.request.contextPath}/stock/getPage?page=${pageInfo.pages}&size=5"
+                    aria-label="Next">尾页</a></li>
+                </c:if>
             </ul>
         </div>
     </div>
