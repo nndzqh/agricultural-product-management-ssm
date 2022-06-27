@@ -2,6 +2,7 @@ package com.imnu.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.imnu.bean.po.Products;
+import com.imnu.bean.vo.ProductsVo;
 import com.imnu.mapper.ProductsMapper;
 import com.imnu.service.ProductsService;
 
@@ -39,6 +40,12 @@ public class ProductsServiceImpl implements ProductsService {
     public List<Products> getPage(int page, int size) {
         PageHelper.startPage(page,size);
         return productsMapper.getPage();
+    }
+
+    @Override
+    public List<ProductsVo> getPageVo(int page, int size) {
+        PageHelper.startPage(page, size);
+        return productsMapper.getPageVo();
     }
 
     @Override
