@@ -58,7 +58,7 @@
                 <li>
                     <a href="${pageContext.request.contextPath}/stock/getPage?page=${pageInfo.pageNum-1}&size=5">上一页</a>
                 </li>
-                <c:forEach begin="1" end="${pageInfo.pages+1}" var="pageNum">
+                <c:forEach begin="1" end="${pageInfo.pages}" var="pageNum">
                     <li>
                         <a href="${pageContext.request.contextPath}/stock/getPage?page=${pageNum}&size=5">${pageNum}</a>
                     </li>

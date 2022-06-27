@@ -85,6 +85,9 @@ public class ProductsController {
     @RequestMapping(value = "getPage", method = RequestMethod.GET)
     public String getPage(@RequestParam(defaultValue = "1") int page,
                           @RequestParam(defaultValue = "5")int size, Model model){
+        if (page < 1){
+            page = 1;
+        }
         List<Products> pageList = productsService.getPage(page,size);
         List<ProductsVo> productsVoList = pageList.stream().map((item) ->{
             ProductsVo productsVo = new ProductsVo();

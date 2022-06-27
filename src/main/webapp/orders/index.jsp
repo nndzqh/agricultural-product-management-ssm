@@ -73,7 +73,7 @@
             <ul class="pagination" style="">
                 <li><a href="${pageContext.request.contextPath}/orders/getPage?page=1&size=5" aria-label="Previous">首页</a></li>
                 <li><a href="${pageContext.request.contextPath}/orders/getPage?page=${pageInfo.pageNum-1}&size=5">上一页</a></li>
-                <c:forEach begin="1" end="${pageInfo.pages+1}" var="pageNum">
+                <c:forEach begin="1" end="${pageInfo.pages}" var="pageNum">
                     <li><a href="${pageContext.request.contextPath}/orders/getPage?page=${pageNum}&size=5">${pageNum}</a></li>
                 </c:forEach>
                 <li><a href="${pageContext.request.contextPath}/orders/getPage?page=${pageInfo.pageNum+1}&size=5">下一页</a></li>
